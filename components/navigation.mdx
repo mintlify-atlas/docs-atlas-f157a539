@@ -1,0 +1,275 @@
+---
+title: Navigation
+description: Fixed vertical icon navigation with scroll spy functionality
+---
+
+# Navigation Component
+
+The portfolio template features a fixed vertical navigation bar with icon-based links that automatically highlight as users scroll through different sections. This navigation uses Bootstrap's ScrollSpy feature for automatic active state management.
+
+## Structure
+
+The navigation is implemented as a fixed sidebar element that appears on the left side of the screen on desktop devices.
+
+```html Navigation HTML (lines 103-139)
+<section id="navigation-bar" class="navigation position-fixed ">
+  <ul class="nav nav-pills text-center align-items-center mt-5 ms-xl-5 ms-3 ">
+    <li>
+      <a href="#home" class="nav-link active rounded-0" aria-current="page" 
+         data-bs-toggle="tooltip" data-bs-placement="right" 
+         aria-label="Home" data-bs-original-title="Home">
+        <i class="ti ti-home"></i>
+      </a>
+    </li>
+    <li>
+      <a href="#about" class="nav-link rounded-0" 
+         data-bs-toggle="tooltip" data-bs-placement="right" 
+         aria-label="Sobre mí" data-bs-original-title="Sobre mí">
+        <i class="ti ti-user"></i>
+      </a>
+    </li>
+    <li>
+      <a href="#resume" class="nav-link rounded-0" 
+         data-bs-toggle="tooltip" data-bs-placement="right" 
+         aria-label="Resumen" data-bs-original-title="Resumen">
+        <i class="ti ti-school"></i>
+      </a>
+    </li>
+    <li>
+      <a href="#portfolio" class="nav-link rounded-0" 
+         data-bs-toggle="tooltip" data-bs-placement="right" 
+         aria-label="Portafolio" data-bs-original-title="Portafolio">
+        <i class="ti ti-briefcase"></i>
+      </a>
+    </li>
+    <li>
+      <a href="#contact" class="nav-link rounded-0" 
+         data-bs-toggle="tooltip" data-bs-placement="right" 
+         aria-label="Contacto" data-bs-original-title="Contacto">
+        <i class="ti ti-phone"></i>
+      </a>
+    </li>
+  </ul>
+</section>
+```
+
+## ScrollSpy Integration
+
+ScrollSpy is activated on the `<body>` element to automatically update navigation links based on scroll position:
+
+```html Body Tag Configuration (line 53)
+<body data-bs-spy="scroll" data-bs-target="#navigation-bar" tabindex="0">
+```
+
+<Accordion title="ScrollSpy Attributes">
+  - **data-bs-spy="scroll"** - Enables Bootstrap ScrollSpy functionality
+  - **data-bs-target="#navigation-bar"** - Specifies which navigation element to update
+  - **tabindex="0"** - Makes the body focusable for ScrollSpy to work correctly
+</Accordion>
+
+## Styling
+
+The navigation styling creates a vertical pill-style menu with hover and active states:
+
+```css Navigation Styles (style.css lines 104-149)
+.navigation {
+  position: fixed;
+  left: 20px;
+  top: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nav-pills {
+  background: transparent;
+  padding: 1rem 0.6rem;
+  border-radius: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.nav-link {
+  color: #6a829e;
+  font-size: 2rem;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent-color);
+  background: transparent !important;
+}
+
+.nav-link i.ti {
+  transition: all 0.32s ease;
+}
+
+.nav-link:hover i.ti,
+.nav-link.active i.ti {
+  transform: scale(1.25);
+}
+```
+
+## Key Features
+
+<CardGroup cols={2}>
+  <Card title="Auto-highlighting" icon="wand-magic-sparkles">
+    Links automatically gain the `.active` class as users scroll to corresponding sections
+  </Card>
+  <Card title="Smooth Scrolling" icon="computer-mouse">
+    Clicking navigation icons triggers smooth scroll to the target section
+  </Card>
+  <Card title="Icon-based Design" icon="icons">
+    Uses Tabler Icons for a clean, minimal aesthetic with tooltips on hover
+  </Card>
+  <Card title="Scale Animation" icon="arrows-maximize">
+    Icons scale to 1.25x on hover and when active for visual feedback
+  </Card>
+</CardGroup>
+
+## Navigation Icons
+
+Each section has a corresponding Tabler Icon:
+
+| Section | Icon Class | Visual |
+|---------|-----------|--------|
+| Home | `ti-home` | House icon |
+| About | `ti-user` | Person silhouette |
+| Resume | `ti-school` | Graduation cap |
+| Portfolio | `ti-briefcase` | Briefcase |
+| Contact | `ti-phone` | Phone |
+
+<Tip>
+You can change icons by replacing the icon class names. Browse [Tabler Icons](https://tabler-icons.io/) for alternatives.
+</Tip>
+
+## Responsive Behavior
+
+The navigation has different visibility rules based on screen size:
+
+```css Responsive Breakpoints (style.css lines 437-458)
+@media (max-width: 1199px) {
+  .navigation {
+    display: none;
+  }
+}
+```
+
+<Note>
+On screens smaller than 1200px (tablets and mobile), the vertical navigation is hidden and users navigate via the offcanvas menu instead.
+</Note>
+
+## Accessibility Features
+
+The navigation includes several accessibility enhancements:
+
+<AccordionGroup>
+  <Accordion title="ARIA Labels">
+    Each link has `aria-label` attributes for screen readers describing the section it navigates to.
+  </Accordion>
+  
+  <Accordion title="Bootstrap Tooltips">
+    Tooltips are initialized on all navigation links with `data-bs-toggle="tooltip"` providing hover text for visual users.
+  </Accordion>
+  
+  <Accordion title="Active State">
+    The `aria-current="page"` attribute marks the currently active section for assistive technologies.
+  </Accordion>
+  
+  <Accordion title="Keyboard Navigation">
+    All links are keyboard-accessible and can be activated with Enter/Space keys.
+  </Accordion>
+</AccordionGroup>
+
+## Customizing Navigation
+
+### Adding a New Section
+
+To add a new navigation item:
+
+<Steps>
+  <Step title="Add the section to your HTML">
+    Create a new section with an `id` attribute:
+    ```html
+    <section id="blog">
+      <!-- Blog content -->
+    </section>
+    ```
+  </Step>
+  
+  <Step title="Add navigation link">
+    Insert a new list item in the navigation:
+    ```html
+    <li>
+      <a href="#blog" class="nav-link rounded-0" 
+         data-bs-toggle="tooltip" data-bs-placement="right" 
+         aria-label="Blog" data-bs-original-title="Blog">
+        <i class="ti ti-notebook"></i>
+      </a>
+    </li>
+    ```
+  </Step>
+  
+  <Step title="Test ScrollSpy">
+    Scroll through your page to ensure the new item highlights correctly when its section is visible.
+  </Step>
+</Steps>
+
+### Changing Icon Colors
+
+Modify the navigation colors by updating CSS variables:
+
+```css Custom Navigation Colors
+.nav-link {
+  color: #your-inactive-color;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #your-active-color;
+}
+```
+
+### Adjusting Position
+
+Change the navigation placement:
+
+```css Navigation Position
+.navigation {
+  left: 20px;   /* Distance from left edge */
+  top: 30px;    /* Distance from top */
+}
+```
+
+## Tooltip Initialization
+
+Tooltips require JavaScript initialization, which is handled in the inline script:
+
+```javascript Tooltip Initialization (index.html lines 547-552)
+(function () {
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+    new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+})();
+```
+
+<Warning>
+Do not remove this script or tooltips will not appear when hovering over navigation icons.
+</Warning>
+
+## Mobile Alternative
+
+On mobile devices (< 1200px width), the vertical navigation is replaced by the hamburger menu that opens the offcanvas sidebar. See the [Hero Section](/components/hero-section) documentation for details on the mobile menu implementation.

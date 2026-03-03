@@ -29,6 +29,7 @@
         "group": "Components",
         "pages": [
           "components/hero-section",
+          "components/navigation",
           "components/about-section",
           "components/resume-section",
           "components/portfolio-section",
