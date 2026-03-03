@@ -1,0 +1,319 @@
+---
+title: "Customizing Content"
+description: "Learn how to customize all text content in your portfolio template, including personal information, bio, work experience, and services."
+---
+
+This guide shows you how to customize all the text content in your portfolio template using real examples from the source code.
+
+## Updating Personal Information
+
+Your personal information appears in multiple places throughout the template. Here's where to update it:
+
+### Header Section
+
+Locate the header section in `index.html` around **lines 72-92**:
+
+```html index.html
+<img src="images/sin.png" class="hero-img mb-4 rounded-circle" alt="Sebastián Gómez"
+    width="140" height="140" loading="lazy">
+
+<h2 class="fw-bold">Sebastián Gómez</h2>
+<p>Desarrollador Web App | Apasionado por la tecnología</p>
+
+<div class="social-icon my-4">
+    <a href="https://github.com/GmzQzvZ" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="ti ti-brand-github"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/juan-sebastian-gomez-qui%C3%B1ones-439a502b8/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <i class="ti ti-brand-linkedin"></i>
+    </a>
+    <a href="https://wa.link/oqpuez" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <i class="ti ti-brand-whatsapp"></i>
+    </a>
+    <a href="mailto:zvzgmzq@gmail.com" class="social-link" aria-label="Email">
+        <i class="ti ti-mail"></i>
+    </a>
+</div>
+```
+
+<Steps>
+  <Step title="Update Profile Image">
+    Replace `images/sin.png` with your own profile photo path. The image should be square (recommended: 300x300px minimum).
+  </Step>
+  
+  <Step title="Change Your Name">
+    Update the `<h2>` tag with your full name.
+  </Step>
+  
+  <Step title="Update Your Title">
+    Modify the `<p>` tag below your name with your professional title or tagline.
+  </Step>
+  
+  <Step title="Update Social Links">
+    Replace the URLs in each `href` attribute with your own social media profiles.
+  </Step>
+</Steps>
+
+### Home Section
+
+The main introduction appears around **lines 144-156**:
+
+```html index.html
+<section id="home" class="mt-0">
+    <div class=" py-lg-4 my-lg-4 text-center">
+        <h1 class="fw-bold">Juan Sebastián Gómez Quiñones</h1>
+        <div class="col-lg-10 mx-auto">
+            <p class="lead-paragraph mb-4">Desarrollador de Software Junior | Estudiante de Ingeniería de Software</p>
+        </div>
+        <p class="lead-paragraph mb-4">Desarrollador Web App apasionado por la tecnología, automatización e innovación digital. Creo soluciones prácticas con Node.js, JavaScript y WhatsApp Business API.</p>
+        <div class=" gap-2 d-sm-flex justify-content-sm-center">
+            <a href="#contact" class="btn btn-primary btn-lg mt-3">Contactarme</a>
+        </div>
+    </div>
+</section>
+```
+
+<Tip>
+  The `lead-paragraph` class creates larger, more prominent text. Use it for your main introduction and key messages.
+</Tip>
+
+### Personal Info Section
+
+Update your detailed contact information around **lines 177-186**:
+
+```html index.html
+<div class=" py-4 my-4 ">
+    <h2 class="fw-bold">Personal Info</h2>
+
+    <ul class="list-unstyled">
+        <li><b>Edad:</b> 25 </li>
+        <li><b>Ubicación:</b> Bogotá, Colombia</li>
+        <li><b>E-mail:</b> zvzgmzq@gmail.com</li>
+        <li><b>Teléfono:</b> +57 322 952 0608</li>
+    </ul>
+</div>
+```
+
+## Modifying the About Section
+
+The About section is located around **lines 160-173**. This is where you tell your professional story:
+
+```html index.html
+<section id="about" class="mt-0">
+    <div class="py-4 my-4 ">
+        <h1 class="fw-bold mt-5">Sobre Mí</h1>
+        <p class="lead-paragraph my-4">
+            Soy un desarrollador de software con experiencia en el diseño y desarrollo de sistemas de gestión, automatización de procesos y aplicaciones personalizadas. Actualmente curso Ingeniería de Software en la Corporación Universitaria Iberoamericana, fortaleciendo mis conocimientos técnicos y mi visión estratégica en el ciclo completo de desarrollo de software.
+            <br><br>
+            Domino lenguajes como PHP, C, C++, C#, HTML, CSS, JavaScript básico y Node.js, con experiencia en bases de datos MySQL y estructuras de almacenamiento en JSON. Me destaco por mi capacidad de aprendizaje autónomo, liderazgo, comunicación asertiva y trabajo en equipo, cualidades que me han permitido asumir el rol de líder de área por casi un año, gestionando proyectos y equipos con éxito.
+            <br><br>
+            He participado en proyectos que integran metodologías ágiles, documentación técnica y buenas prácticas de desarrollo, orientados a resultados medibles y de calidad. Además, cuento con experiencia en la integración de APIs externas como WhatsApp Business API y Google Calendar, aplicando soluciones enfocadas en la eficiencia, escalabilidad y seguridad.
+            <br><br>
+            Mi objetivo es seguir creciendo como profesional, aportando innovación tecnológica y valor agregado en cada proyecto que desarrollo.
+        </p>
+    </div>
+</section>
+```
+
+<Warning>
+  Keep your bio focused and professional. Aim for 3-4 paragraphs that highlight your experience, skills, and career goals.
+</Warning>
+
+## Adding Work Experience
+
+Work experience entries are structured as timeline items around **lines 277-305**:
+
+```html index.html
+<section id="experiencia-laboral" class="resume-section">
+    <div class="container">
+        <div class="section-title">
+            <div class="py-4 my-4 "></div>
+            <h2 class="fw-bold pb-4">Experiencia Laboral</h2>
+        </div>
+    
+        <hr class="mid-break my-2">
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <div class="data-info">
+                        <p class="meta-date">Ene 2022 - Oct 2025 <span class="divider">•</span> <span class="company">Vita Support SAS</span></p>
+                        <h3 class="info-title">Técnico de Software Junior</h3>
+                        <p>Liderazgo de área por casi 11 meses, gestionando proyectos y coordinando equipo. Desarrollo de sistemas a medida garantizando seguridad, escalabilidad y cumplimiento de plazos. Documentación técnica y soporte continuo.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <div class="data-info">
+                        <p class="meta-date">Ene 2022 - Jul 2022 <span class="divider">•</span> <span class="company">Aprendiz SENA – FUNDEM PSP</span></p>
+                        <h3 class="info-title">Desarrollador de Software</h3>
+                        <p>Pruebas de calidad y validación de desarrollos. Desarrollo de una plataforma educativa desde cero. Elaboración de reportes técnicos para clientes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+```
+
+<Steps>
+  <Step title="Duplicate Timeline Item">
+    Copy the entire `<div class="timeline-item" data-aos="fade-up">` block to add a new experience entry.
+  </Step>
+  
+  <Step title="Update Date and Company">
+    Modify the `meta-date` paragraph with your employment dates and company name.
+  </Step>
+  
+  <Step title="Add Job Title">
+    Update the `info-title` heading with your position.
+  </Step>
+  
+  <Step title="Describe Your Role">
+    Write 2-3 sentences describing your key responsibilities and achievements.
+  </Step>
+</Steps>
+
+## Education Entries
+
+Education follows the same timeline structure around **lines 308-344**:
+
+```html index.html
+<section id="education" class="resume-section">
+<div class="container">
+    <div class="section-title">
+        <div class="py-4 my-4 "></div>
+        <h2 class="fw-bold pb-4">Educación</h2>
+    </div>
+
+    <hr class="mid-break my-2">
+    <div class="timeline">
+        <div class="timeline-item" data-aos="fade-up">
+            <div class="timeline-content">
+                <div class="data-info">
+                    <p class="meta-date">En curso <span class="divider">•</span> <span class="company">Corporación Universitaria Iberoamericana</span></p>
+                    <h3 class="info-title">Ingeniería de Software</h3>
+                    <p>Formación universitaria en ingeniería de software con enfoque en arquitectura de sistemas, desarrollo de aplicaciones y gestión de proyectos tecnológicos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+```
+
+Use the same duplication process as work experience to add multiple degrees or certifications.
+
+## Customizing Services Offered
+
+The services section is a grid layout around **lines 192-254**:
+
+```html index.html
+<div class="py-4 my-4">
+    <h2 class="fw-bold pt-4 pb-5">Servicios</h2>
+
+    <div class="row row-cols-1 row-cols-sm-2">
+
+        <div class="col d-flex align-items-start pb-5">
+            <div>
+                <i class="ti ti-device-imac-code"></i>
+                <h4 class="fw-bold mb-0">Desarrollo Web</h4>
+                <p class="mb-1">
+                    Desarrollo de aplicaciones web modernas, escalables y eficientes 
+                    utilizando JavaScript, Node.js, HTML y CSS.
+                </p>
+                <a href="https://github.com/GmzQzvZ" class="btn btn-outline-primary btn-sm mt-1" target="_blank" rel="noopener noreferrer">
+                    Ver proyectos en GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="col d-flex align-items-start pb-5">
+            <div>
+                <i class="ti ti-settings-automation"></i>
+                <h4 class="fw-bold mb-0">Automatización de Procesos</h4>
+                <p class="mb-1">
+                    Optimización de tareas repetitivas mediante scripts y soluciones digitales
+                    que mejoran la eficiencia y reducen errores operativos.
+                </p>
+                <a href="https://github.com/GmzQzvZ" class="btn btn-outline-primary btn-sm mt-1" target="_blank" rel="noopener noreferrer">
+                    Ver soluciones
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+### Available Tabler Icons
+
+The template uses Tabler Icons. Common service icons include:
+
+- `ti ti-device-imac-code` - Web Development
+- `ti ti-settings-automation` - Automation
+- `ti ti-sitemap` - Systems Development
+- `ti ti-user-search` - Consulting
+- `ti ti-database` - Database Management
+- `ti ti-api` - API Development
+- `ti ti-brand-github` - GitHub
+- `ti ti-palette` - Design
+
+<Tip>
+  Browse all available icons at [Tabler Icons](https://tabler-icons.io/) and use the class format `ti ti-icon-name`.
+</Tip>
+
+## Technical Skills Section
+
+Update your skills around **lines 262-274**:
+
+```html index.html
+<div class="py-4 my-4 ">
+    <h2 class="fw-bold pb-4">Habilidades Técnicas</h2>
+
+    <div class="skills-list">
+        <h4><i class="ti ti-brand-nodejs"></i> Node.js</h4>
+        <h4><i class="ti ti-brand-javascript"></i> JavaScript</h4>
+        <h4><i class="ti ti-brand-php"></i> PHP</h4>
+        <h4><i class="ti ti-brand-mysql"></i> MySQL</h4>
+        <h4><i class="ti ti-brand-html5"></i> HTML & CSS</h4>
+        <h4><i class="ti ti-brand-c-sharp"></i> C#</h4>
+        <h4><i class="ti ti-brand-git"></i> Git</h4>
+    </div>
+</div>
+```
+
+Each skill is a simple `<h4>` tag with an icon. Add or remove skills as needed by duplicating the lines.
+
+## SEO and Meta Tags
+
+Don't forget to update your SEO information in the `<head>` section around **lines 5-27**:
+
+```html index.html
+<head>
+    <title>Sebastián Gómez - Desarrollador Web App</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="description" content="Portafolio de Juan Sebastián Gómez Quiñones. Desarrollador Web App. Proyectos con Node.js, JavaScript, PHP, MySQL y automatización con APIs.">
+    <meta name="author" content="Sebastián Gómez">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sebastián Gómez - Desarrollador Web App">
+    <meta property="og:description" content="Portafolio, experiencia y proyectos. Desarrollo web, automatización y soluciones a medida.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="images/sin.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sebastián Gómez - Desarrollador Web App">
+    <meta name="twitter:description" content="Portafolio, experiencia y proyectos. Desarrollo web, automatización y soluciones a medida.">
+    <meta name="twitter:image" content="images/sin.png">
+</head>
+```
+
+<Warning>
+  Always update the `og:url` meta tag with your actual website URL for proper social media sharing.
+</Warning>

@@ -1,0 +1,361 @@
+---
+title: 'Portfolio Section Component'
+description: 'Portfolio grid layout with image handling, hover effects, and category badges'
+---
+
+# Portfolio Section Component
+
+The portfolio section displays project cards in a responsive grid layout with hover effects, overlay animations, and category badges.
+
+## Section Structure
+
+```html
+<section id="portfolio" class="portfolio-grid-container">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h1 class="fw-bold">Portafolio</h1>
+            <p class="text">Encontrarás aquí algunos de mis proyectos</p>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- Portfolio items -->
+        </div>
+    </div>
+</section>
+```
+
+## Portfolio Grid Layout
+
+The grid uses CSS Grid with auto-fill to create responsive columns.
+
+### Grid CSS
+
+```css
+.portfolio-grid-container {
+    padding: 20px 0 30px;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 0 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+```
+
+<ParamField path="grid-template-columns" type="css">
+  `repeat(auto-fill, minmax(280px, 1fr))` - Auto-fills columns with min width 280px
+</ParamField>
+
+<ParamField path="gap" type="css" default="20px">
+  Space between grid items
+</ParamField>
+
+<ParamField path="max-width" type="css" default="1200px">
+  Maximum container width
+</ParamField>
+
+## Portfolio Item Structure
+
+Each portfolio card contains an image, category badge, and title.
+
+### HTML Structure
+
+```html
+<div class="portfolio-item">
+    <a href="https://github.com/GmzQzvZ/facturas_js" 
+       target="_blank" rel="noopener noreferrer" class="image-link">
+        <img class="portfolio-img" 
+             src="images/crm.jpg" 
+             alt="CRM con módulo de facturación">
+        <div class="portfolio-info">
+            <span class="portfolio-category">Web</span>
+            <h3 class="portfolio-title">CRM con Facturación</h3>
+        </div>
+    </a>
+</div>
+```
+
+### Complete Portfolio Grid Example
+
+```html
+<div class="portfolio-grid">
+    <!-- Project 1 -->
+    <div class="portfolio-item">
+        <a href="" target="_blank" rel="noopener noreferrer" class="image-link">
+            <img class="portfolio-img" 
+                 src="images/whatsappbot.jpg" 
+                 alt="Bot de WhatsApp para peluquería">
+            <div class="portfolio-info">
+                <span class="portfolio-category">En Construccion</span>
+                <h3 class="portfolio-title">Bot WhatsApp Peluquería</h3>
+            </div>
+        </a>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="portfolio-item">
+        <a href="https://github.com/GmzQzvZ/facturas_js" 
+           target="_blank" rel="noopener noreferrer" class="image-link">
+            <img class="portfolio-img" 
+                 src="images/crm.jpg" 
+                 alt="CRM con módulo de facturación">
+            <div class="portfolio-info">
+                <span class="portfolio-category">Web</span>
+                <h3 class="portfolio-title">CRM con Facturación</h3>
+            </div>
+        </a>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="portfolio-item">
+        <a href="https://makaluvye.web.app/" 
+           target="_blank" rel="noopener noreferrer" class="image-link">
+            <img class="portfolio-img" 
+                 src="images/viajes.png" 
+                 alt="Sitio web de agencia de viajes">
+            <div class="portfolio-info">
+                <span class="portfolio-category">Web</span>
+                <h3 class="portfolio-title">Agencia de Viajes</h3>
+            </div>
+        </a>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="portfolio-item">
+        <a href="https://github.com/GmzQzvZ/ticket-administrator" 
+           target="_blank" rel="noopener noreferrer" class="image-link">
+            <img class="portfolio-img" 
+                 src="images/task.png" 
+                 alt="Aplicación de administración de tickets">
+            <div class="portfolio-info">
+                <span class="portfolio-category">Web</span>
+                <h3 class="portfolio-title">Ticket Administrator</h3>
+            </div>
+        </a>
+    </div>
+</div>
+```
+
+## Portfolio Item Styling
+
+### Card Container
+
+```css
+.portfolio-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 100%;
+}
+
+.portfolio-item > a {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+```
+
+### Image Styling
+
+```css
+.portfolio-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+}
+```
+
+<ParamField path="object-fit" type="css" default="cover">
+  Ensures image fills container while maintaining aspect ratio
+</ParamField>
+
+<ParamField path="height" type="css" default="180px">
+  Fixed height for consistent card sizing
+</ParamField>
+
+### Info Section
+
+```css
+.portfolio-info {
+    padding: 15px;
+    background: rgba(13, 17, 23, 0.9);
+    color: #fff;
+    position: relative;
+    z-index: 2;
+}
+```
+
+## Category Badges
+
+Category badges display the project type with accent color background.
+
+```css
+.portfolio-category {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--accent-color);
+    color: #fff;
+    font-size: 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+```
+
+### Usage
+
+```html
+<span class="portfolio-category">Web</span>
+<span class="portfolio-category">En Construccion</span>
+```
+
+## Project Title
+
+```css
+.portfolio-title {
+    margin: 0 0 6px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+```
+
+## Hover Effects
+
+The portfolio items feature multiple hover effects for enhanced interactivity.
+
+### Card Hover Effect
+
+```css
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(74, 144, 226, 0.2);
+    border-color: var(--accent-color);
+}
+```
+
+<Accordion title="Hover Effect Breakdown">
+  When hovering over a portfolio item:
+  
+  1. **Card lifts up** 5px using `translateY(-5px)`
+  2. **Shadow appears** with blue tint and 20% opacity
+  3. **Border color changes** to accent color (blue)
+  4. **Image scales up** to 105% size
+  5. **Overlay appears** with gradient from transparent to dark
+</Accordion>
+
+### Image Zoom Effect
+
+```css
+.portfolio-item:hover .portfolio-img {
+    transform: scale(1.05);
+}
+```
+
+### Overlay Gradient
+
+```css
+.portfolio-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.portfolio-item:hover::after {
+    opacity: 1;
+}
+```
+
+## Responsive Breakpoints
+
+The grid adapts to different screen sizes.
+
+### Tablet View (≤ 991px)
+
+```css
+@media (max-width: 991px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .portfolio-img {
+        height: 180px;
+    }
+}
+```
+
+### Mobile View (≤ 576px)
+
+```css
+@media (max-width: 576px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+    
+    .portfolio-img {
+        height: 200px;
+    }
+}
+```
+
+## Accessibility Features
+
+### Proper Link Attributes
+
+```html
+<a href="https://github.com/project" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="image-link">
+```
+
+<ParamField path="target" type="attribute" default="_blank">
+  Opens link in new tab
+</ParamField>
+
+<ParamField path="rel" type="attribute" default="noopener noreferrer">
+  Security best practice for external links
+</ParamField>
+
+### Alt Text for Images
+
+```html
+<img class="portfolio-img" 
+     src="images/crm.jpg" 
+     alt="CRM con módulo de facturación">
+```
+
+## Layout Behavior
+
+| Screen Size | Columns | Image Height | Gap |
+|------------|---------|--------------|-----|
+| Desktop (> 991px) | Auto-fill (min 280px) | 180px | 20px |
+| Tablet (≤ 991px) | 2 columns | 180px | 20px |
+| Mobile (≤ 576px) | 1 column | 200px | 20px |
+
+## Key Features
+
+- **CSS Grid layout** with auto-fill for responsive columns
+- **Fixed image heights** for consistent card sizing
+- **Hover animations** including lift, zoom, and overlay effects
+- **Category badges** with accent color styling
+- **Gradient overlay** appearing on hover
+- **Responsive design** with three breakpoints
+- **External link handling** with security attributes
+- **Equal height cards** using `height: 100%`

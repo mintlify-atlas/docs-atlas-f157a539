@@ -1,0 +1,383 @@
+---
+title: "Managing Portfolio Projects"
+description: "Learn how to add, remove, and customize portfolio project items with images, categories, and links."
+---
+
+The portfolio section displays your projects in a responsive grid layout. This guide shows you how to manage portfolio items using the actual HTML structure from the template.
+
+## Portfolio Section Structure
+
+The portfolio grid is located in `index.html` at **lines 348-401**:
+
+```html index.html
+<section id="portfolio" class="portfolio-grid-container">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h1 class="fw-bold">Portafolio</h1>
+            <p class="text">Encontrarás aquí algunos de mis proyectos</p>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- Project items go here -->
+        </div>
+    </div>
+</section>
+```
+
+## Adding a New Project
+
+<Steps>
+  <Step title="Prepare Your Project Image">
+    Add your project image to the `images/` directory. Recommended size: **800x600px** or similar 4:3 ratio.
+  </Step>
+  
+  <Step title="Copy the Portfolio Item Template">
+    Use this HTML structure for each project:
+    
+    ```html index.html
+    <div class="portfolio-item">
+        <a href="https://github.com/yourusername/project" target="_blank" rel="noopener noreferrer" class="image-link">
+            <img class="portfolio-img" src="images/your-project.jpg" alt="Project description">
+            <div class="portfolio-info">
+                <span class="portfolio-category">Web</span>
+                <h3 class="portfolio-title">Your Project Name</h3>
+            </div>
+        </a>
+    </div>
+    ```
+  </Step>
+  
+  <Step title="Update Project Details">
+    Customize the `href`, `src`, `alt`, category, and title for your project.
+  </Step>
+  
+  <Step title="Add to Portfolio Grid">
+    Insert your new portfolio item inside the `<div class="portfolio-grid">` container.
+  </Step>
+</Steps>
+
+## Real Portfolio Examples
+
+Here are the actual portfolio items from the template at **lines 356-399**:
+
+### Example 1: WhatsApp Bot Project
+
+```html index.html
+<!-- Project 1 -->
+<div class="portfolio-item">
+    <a href="" target="_blank" rel="noopener noreferrer" class="image-link">
+        <img class="portfolio-img" src="images/whatsappbot.jpg" alt="Bot de WhatsApp para peluquería">
+        <div class="portfolio-info">
+            <span class="portfolio-category">En Construccion</span>
+            <h3 class="portfolio-title">Bot WhatsApp Peluquería</h3>
+        </div>
+    </a>
+</div>
+```
+
+### Example 2: CRM System
+
+```html index.html
+<!-- Project 2 -->
+<div class="portfolio-item">
+    <a href="https://github.com/GmzQzvZ/facturas_js" target="_blank" rel="noopener noreferrer" class="image-link">
+        <img class="portfolio-img" src="images/crm.jpg" alt="CRM con módulo de facturación">
+        <div class="portfolio-info">
+            <span class="portfolio-category">Web</span>
+            <h3 class="portfolio-title">CRM con Facturación</h3>
+        </div>
+    </a>
+</div>
+```
+
+### Example 3: Travel Agency Website
+
+```html index.html
+<!-- Project 3 -->
+<div class="portfolio-item">
+    <a href="https://makaluvye.web.app/" target="_blank" rel="noopener noreferrer" class="image-link">
+        <img class="portfolio-img" src="images/viajes.png" alt="Sitio web de agencia de viajes">
+        <div class="portfolio-info">
+            <span class="portfolio-category">Web</span>
+            <h3 class="portfolio-title">Agencia de Viajes</h3>
+        </div>
+    </a>
+</div>
+```
+
+### Example 4: Ticket Administrator
+
+```html index.html
+<!-- Project 4 -->
+<div class="portfolio-item">
+    <a href="https://github.com/GmzQzvZ/ticket-administrator" target="_blank" rel="noopener noreferrer" class="image-link">
+        <img class="portfolio-img" src="images/task.png" alt="Aplicación de administración de tickets">
+        <div class="portfolio-info">
+            <span class="portfolio-category">Web</span>
+            <h3 class="portfolio-title">Ticket Administrator</h3>
+        </div>
+    </a>
+</div>
+```
+
+## Project Categories
+
+The `portfolio-category` span is used to tag your projects. Common categories include:
+
+- **Web** - Web applications and websites
+- **Mobile** - Mobile applications
+- **API** - Backend and API projects
+- **Design** - UI/UX design work
+- **En Construccion** - Projects in progress
+- **Open Source** - Open source contributions
+
+<Tip>
+  Keep category names short (1-2 words) for better visual appearance on the category badge.
+</Tip>
+
+## Image Requirements
+
+### Recommended Specifications
+
+| Property | Recommendation |
+|----------|----------------|
+| **Dimensions** | 800x600px (4:3 ratio) |
+| **Format** | JPG or PNG |
+| **File Size** | Under 500KB (optimize for web) |
+| **Quality** | 80-90% compression |
+
+### Image Optimization Tips
+
+<Steps>
+  <Step title="Use Proper Dimensions">
+    Resize images to 800x600px before uploading to reduce file size and improve loading speed.
+  </Step>
+  
+  <Step title="Compress Images">
+    Use tools like [TinyPNG](https://tinypng.com/) or [Squoosh](https://squoosh.app/) to compress images without losing quality.
+  </Step>
+  
+  <Step title="Use Descriptive Alt Text">
+    Always include descriptive `alt` attributes for accessibility and SEO:
+    
+    ```html
+    <img class="portfolio-img" src="images/project.jpg" alt="E-commerce platform with shopping cart">
+    ```
+  </Step>
+</Steps>
+
+<Warning>
+  Large, unoptimized images can significantly slow down your portfolio page. Always optimize images before adding them.
+</Warning>
+
+## Portfolio Grid Styling
+
+The portfolio grid uses CSS Grid for responsive layout. Here's the actual styling from `style.css` at **lines 296-408**:
+
+```css style.css
+.portfolio-grid-container {
+    padding: 20px 0 30px;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 0 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.portfolio-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 100%;
+}
+
+.portfolio-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.portfolio-info {
+    padding: 15px;
+    background: rgba(13, 17, 23, 0.9);
+    color: #fff;
+    position: relative;
+    z-index: 2;
+}
+```
+
+### Hover Effects
+
+The template includes smooth hover animations at **lines 342-369**:
+
+```css style.css
+/* Hover effects */
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(74, 144, 226, 0.2);
+    border-color: var(--accent-color);
+}
+
+.portfolio-item:hover .portfolio-img {
+    transform: scale(1.05);
+}
+
+/* Add overlay on hover */
+.portfolio-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.portfolio-item:hover::after {
+    opacity: 1;
+}
+```
+
+## Customizing the Grid Layout
+
+### Adjust Number of Columns
+
+```css style.css
+.portfolio-grid {
+    /* Show 2 columns minimum */
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+```
+
+### Change Image Height
+
+```css style.css
+.portfolio-img {
+    height: 240px; /* Taller images */
+}
+```
+
+### Modify Gap Between Items
+
+```css style.css
+.portfolio-grid {
+    gap: 30px; /* Larger spacing */
+}
+```
+
+## Responsive Behavior
+
+The portfolio grid automatically adjusts for different screen sizes at **lines 389-408**:
+
+```css style.css
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .portfolio-img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 576px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+    
+    .portfolio-img {
+        height: 200px;
+    }
+}
+```
+
+<Tip>
+  On tablets (991px), the grid shows 2 columns. On mobile (576px), it shows 1 column for optimal viewing.
+</Tip>
+
+## Linking Projects
+
+You can link projects to different destinations:
+
+### GitHub Repository
+
+```html index.html
+<a href="https://github.com/username/repo" target="_blank" rel="noopener noreferrer" class="image-link">
+```
+
+### Live Demo
+
+```html index.html
+<a href="https://myproject.com" target="_blank" rel="noopener noreferrer" class="image-link">
+```
+
+### Case Study or Project Page
+
+```html index.html
+<a href="project-details.html" class="image-link">
+```
+
+### Multiple Links (Add Buttons)
+
+For projects with both demo and repository:
+
+```html index.html
+<div class="portfolio-item">
+    <a href="https://demo.com" target="_blank" rel="noopener noreferrer" class="image-link">
+        <img class="portfolio-img" src="images/project.jpg" alt="Project">
+        <div class="portfolio-info">
+            <span class="portfolio-category">Web</span>
+            <h3 class="portfolio-title">My Project</h3>
+            <div class="d-flex gap-2 mt-2">
+                <a href="https://demo.com" class="btn btn-sm btn-primary" target="_blank" onclick="event.stopPropagation();">Live Demo</a>
+                <a href="https://github.com/user/repo" class="btn btn-sm btn-outline-primary" target="_blank" onclick="event.stopPropagation();">GitHub</a>
+            </div>
+        </div>
+    </a>
+</div>
+```
+
+<Warning>
+  When adding buttons inside a linked portfolio item, use `onclick="event.stopPropagation();"` to prevent the parent link from triggering.
+</Warning>
+
+## Removing Projects
+
+To remove a project, simply delete the entire `<div class="portfolio-item">...</div>` block for that project.
+
+## Complete Full Example
+
+Here's a complete portfolio item with all best practices:
+
+```html index.html
+<div class="portfolio-item">
+    <a href="https://github.com/username/awesome-project" target="_blank" rel="noopener noreferrer" class="image-link">
+        <img class="portfolio-img" 
+             src="images/awesome-project.jpg" 
+             alt="Awesome project - A full-stack e-commerce platform built with React and Node.js"
+             loading="lazy">
+        <div class="portfolio-info">
+            <span class="portfolio-category">Web</span>
+            <h3 class="portfolio-title">E-Commerce Platform</h3>
+        </div>
+    </a>
+</div>
+```
+
+<Tip>
+  Add `loading="lazy"` to portfolio images to improve initial page load performance.
+</Tip>

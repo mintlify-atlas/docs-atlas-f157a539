@@ -1,0 +1,350 @@
+---
+title: 'Deploy to Netlify'
+description: 'Deploy your portfolio template using Netlify'
+---
+
+## Overview
+
+Netlify is a modern hosting platform designed for static sites and frontend applications. It offers the **easiest deployment experience** with drag-and-drop functionality and instant previews.
+
+<Note>
+  Netlify's free tier includes 100GB bandwidth/month, 300 build minutes/month, and automatic SSL certificates.
+</Note>
+
+## Prerequisites
+
+- Your portfolio template folder ready to deploy
+- An email address to create a Netlify account
+- (Optional) A GitHub account for Git-based deployments
+
+## Method 1: Drag-and-Drop Deployment (Fastest)
+
+<Steps>
+  <Step title="Sign Up for Netlify">
+    1. Go to [netlify.com](https://www.netlify.com)
+    2. Click **Sign Up** in the top-right corner
+    3. Choose to sign up with:
+       - Email
+       - GitHub (recommended if you use GitHub)
+       - GitLab
+       - Bitbucket
+    4. Complete the registration process
+    5. Verify your email if required
+
+    <Tip>
+      Signing up with GitHub makes future Git-based deployments seamless.
+    </Tip>
+  </Step>
+
+  <Step title="Prepare Your Portfolio Folder">
+    1. Locate your portfolio template folder on your computer
+    2. Ensure `index.html` is at the **root level** of the folder
+    3. Verify all assets (CSS, JavaScript, images) are included
+    4. Test locally one more time to confirm everything works
+
+    <Warning>
+      The folder structure must have `index.html` at the top level, not nested in a subfolder.
+    </Warning>
+  </Step>
+
+  <Step title="Deploy via Drag-and-Drop">
+    1. Log in to your [Netlify dashboard](https://app.netlify.com)
+    2. Look for the **drag-and-drop area** on the main page
+       - If you don't see it, click **Add new site** > **Deploy manually**
+    3. **Drag your entire portfolio folder** into the drop zone
+    4. Wait for upload to complete (usually 10-30 seconds)
+
+    You'll see a progress indicator as files upload and deploy.
+
+    <Note>
+      Netlify automatically detects it's a static site and configures everything for you.
+    </Note>
+  </Step>
+
+  <Step title="Access Your Live Portfolio">
+    1. Once deployment completes, Netlify generates a random URL like:
+       ```
+       https://random-name-123456.netlify.app
+       ```
+    2. Click the URL to view your live portfolio
+    3. Your site is now live and accessible worldwide
+
+    <Tip>
+      Copy this URL and share it immediately. You can customize it in the next step.
+    </Tip>
+  </Step>
+
+  <Step title="Customize Your Site Name (Optional)">
+    1. In your site dashboard, click **Site settings**
+    2. Under **Site information**, click **Change site name**
+    3. Enter a custom name (e.g., `john-doe-portfolio`)
+    4. Your new URL will be: `https://john-doe-portfolio.netlify.app`
+
+    <Warning>
+      Site names must be unique across all Netlify sites. Choose something distinctive.
+    </Warning>
+  </Step>
+</Steps>
+
+## Method 2: Deploy from GitHub Repository
+
+<Steps>
+  <Step title="Push Your Portfolio to GitHub">
+    1. Create a new GitHub repository
+    2. Upload your portfolio files to the repository
+    3. Ensure `index.html` is at the root level
+
+    See the [GitHub Pages guide](/deployment/github-pages) for detailed Git instructions.
+  </Step>
+
+  <Step title="Connect Netlify to GitHub">
+    1. In your Netlify dashboard, click **Add new site**
+    2. Select **Import an existing project**
+    3. Choose **Deploy with GitHub**
+    4. Authorize Netlify to access your GitHub account
+    5. Select your portfolio repository from the list
+  </Step>
+
+  <Step title="Configure Build Settings">
+    Since this is a static HTML site with no build process:
+
+    - **Build command**: Leave empty
+    - **Publish directory**: Leave as root (`/`) or enter `.`
+    - **Branch to deploy**: `main` (or `master`)
+
+    Click **Deploy site**
+
+    <Note>
+      For static sites, you don't need any build commands or special configuration.
+    </Note>
+  </Step>
+
+  <Step title="Automatic Deployments">
+    Netlify now watches your GitHub repository. Every time you push changes:
+
+    1. Netlify automatically detects the push
+    2. Triggers a new deployment
+    3. Updates your live site in seconds
+
+    <Tip>
+      You can view deployment history and logs in the **Deploys** tab of your site dashboard.
+    </Tip>
+  </Step>
+</Steps>
+
+## Updating Your Portfolio
+
+### For Drag-and-Drop Deployments
+
+<Steps>
+  <Step title="Make Local Changes">
+    Edit your HTML, CSS, or JavaScript files locally.
+  </Step>
+
+  <Step title="Redeploy">
+    1. Go to your site dashboard on Netlify
+    2. Click **Deploys** tab
+    3. Scroll to the drag-and-drop area
+    4. Drag your updated folder to deploy a new version
+  </Step>
+</Steps>
+
+### For Git-Based Deployments
+
+<Steps>
+  <Step title="Push Changes to GitHub">
+    ```bash
+    git add .
+    git commit -m "Update portfolio content"
+    git push
+    ```
+  </Step>
+
+  <Step title="Automatic Deployment">
+    Netlify automatically deploys your changes. Watch the **Deploys** tab for progress.
+  </Step>
+</Steps>
+
+## Custom Domain and SSL Setup
+
+<Steps>
+  <Step title="Add Your Custom Domain">
+    1. In your site dashboard, click **Domain settings**
+    2. Click **Add custom domain**
+    3. Enter your domain name (e.g., `www.johndoe.com`)
+    4. Click **Verify** and then **Add domain**
+
+    <Note>
+      You can add multiple domains (e.g., both `example.com` and `www.example.com`).
+    </Note>
+  </Step>
+
+  <Step title="Configure DNS">
+    Netlify provides DNS configuration instructions:
+
+    **Option A: Use Netlify DNS (Recommended)**
+    1. Click **Set up Netlify DNS**
+    2. Follow instructions to update nameservers at your registrar
+    3. Netlify handles all DNS configuration automatically
+
+    **Option B: Use External DNS**
+    1. Add these records at your DNS provider:
+       ```
+       Type: CNAME
+       Name: www
+       Value: your-site-name.netlify.app
+       ```
+    2. For apex domain:
+       ```
+       Type: A
+       Name: @
+       Value: (Netlify load balancer IP shown in dashboard)
+       ```
+  </Step>
+
+  <Step title="Enable HTTPS (Automatic)">
+    1. Once DNS is configured, Netlify automatically provisions an SSL certificate
+    2. This takes a few minutes to an hour
+    3. Your site will be accessible via `https://`
+
+    <Tip>
+      Netlify uses Let's Encrypt for free, automatic SSL certificates that renew automatically.
+    </Tip>
+  </Step>
+
+  <Step title="Configure HTTPS Settings">
+    In **Domain settings** > **HTTPS**:
+    - Enable **Force HTTPS** (redirects HTTP to HTTPS)
+    - Certificate is automatically renewed every 90 days
+  </Step>
+</Steps>
+
+## Environment Variables (If Needed)
+
+If your portfolio uses any environment variables (like API keys):
+
+<Steps>
+  <Step title="Access Environment Variables">
+    1. Go to **Site settings** > **Environment variables**
+    2. Click **Add a variable**
+  </Step>
+
+  <Step title="Add Variables">
+    - **Key**: Variable name (e.g., `API_KEY`)
+    - **Values**: Different values for production/preview
+    - **Scopes**: Choose when to use this variable
+
+    Click **Create variable**
+  </Step>
+
+  <Step title="Access in JavaScript">
+    For client-side JavaScript, you'll need to inject these at build time. For most static portfolios, this isn't necessary.
+
+    <Warning>
+      Don't expose sensitive API keys in client-side JavaScript. Use serverless functions or keep keys server-side.
+    </Warning>
+  </Step>
+</Steps>
+
+## Advanced Features
+
+### Form Handling
+
+Netlify can handle form submissions without server-side code:
+
+```html
+<form name="contact" method="POST" data-netlify="true">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" placeholder="Message" required></textarea>
+  <button type="submit">Send</button>
+</form>
+```
+
+<Tip>
+  Add `data-netlify="true"` to any form, and Netlify automatically handles submissions and stores them in your dashboard.
+</Tip>
+
+### Deploy Previews
+
+For Git-based deployments:
+- Every pull request gets a **unique preview URL**
+- Test changes before merging to production
+- Share preview links with clients or collaborators
+
+### Redirects and Rewrites
+
+Create a `_redirects` file in your portfolio root:
+
+```
+# Redirect /old-page to /new-page
+/old-page  /new-page  301
+
+# SPA fallback
+/*  /index.html  200
+```
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Site not loading">
+    - Check that `index.html` is at the root of your deploy folder
+    - Review deploy logs in the **Deploys** tab
+    - Ensure publish directory is set correctly (usually `/` or `.`)
+  </Accordion>
+
+  <Accordion title="Assets not loading (CSS/JS/Images)">
+    - Use relative paths: `./css/style.css` instead of `/css/style.css`
+    - Check file names are spelled correctly (case-sensitive)
+    - Verify files were included in the deployment
+  </Accordion>
+
+  <Accordion title="Custom domain not working">
+    - Wait 24-48 hours for DNS propagation
+    - Verify DNS records are configured correctly
+    - Check domain settings in Netlify dashboard
+    - Use [DNS Checker](https://dnschecker.org) to verify propagation
+  </Accordion>
+
+  <Accordion title="SSL certificate not provisioning">
+    - Ensure DNS is fully propagated
+    - Check that CAA records (if any) allow Let's Encrypt
+    - Wait up to an hour for initial certificate provisioning
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<Tip>
+  **Deploy Previews**: Use Git-based deployments to get automatic preview URLs for every change before going live.
+</Tip>
+
+<Tip>
+  **Rollback Feature**: If something breaks, use the **Deploys** tab to instantly roll back to a previous deployment.
+</Tip>
+
+<Tip>
+  **Analytics**: Enable Netlify Analytics (paid add-on) for privacy-friendly, server-side analytics without JavaScript.
+</Tip>
+
+<Note>
+  Netlify's free tier is generous and suitable for most personal portfolios. Upgrade only if you need additional bandwidth or features.
+</Note>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Form Handling"
+    icon="envelope"
+  >
+    Add a contact form to your portfolio using Netlify Forms.
+  </Card>
+
+  <Card
+    title="Netlify Functions"
+    icon="code"
+  >
+    Add serverless functions for dynamic functionality.
+  </Card>
+</CardGroup>

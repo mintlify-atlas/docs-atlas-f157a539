@@ -1,0 +1,245 @@
+---
+title: 'Deploy to GitHub Pages'
+description: 'Deploy your portfolio template using GitHub Pages'
+---
+
+## Overview
+
+GitHub Pages is a free static site hosting service that deploys directly from a GitHub repository. It's perfect if you're already using GitHub for version control.
+
+<Note>
+  GitHub Pages is **completely free** for public repositories with unlimited bandwidth.
+</Note>
+
+## Prerequisites
+
+- A GitHub account (create one at [github.com](https://github.com))
+- Your portfolio template folder ready to upload
+- Basic familiarity with GitHub (helpful but not required)
+
+## Deployment Steps
+
+<Steps>
+  <Step title="Create a GitHub Repository">
+    1. Log in to [GitHub](https://github.com)
+    2. Click the **+** icon in the top-right corner
+    3. Select **New repository**
+    4. Name your repository (e.g., `my-portfolio`)
+    5. Choose **Public** visibility
+    6. **Do NOT** initialize with README, .gitignore, or license
+    7. Click **Create repository**
+
+    <Tip>
+      For a personal portfolio at `username.github.io`, name your repository exactly `username.github.io` (replace `username` with your GitHub username).
+    </Tip>
+  </Step>
+
+  <Step title="Upload Your Portfolio Files">
+    You have two options:
+
+    ### Option A: Upload via Web Interface (Easiest)
+    1. On your repository page, click **uploading an existing file**
+    2. Drag and drop your **entire portfolio folder** into the upload area
+    3. Wait for all files to upload
+    4. Scroll down and click **Commit changes**
+
+    ### Option B: Upload via Git Command Line
+    ```bash
+    # Navigate to your portfolio folder
+    cd /path/to/your/portfolio
+
+    # Initialize git repository
+    git init
+
+    # Add all files
+    git add .
+
+    # Commit files
+    git commit -m "Initial portfolio commit"
+
+    # Add remote repository
+    git remote add origin https://github.com/username/repository-name.git
+
+    # Push to GitHub
+    git branch -M main
+    git push -u origin main
+    ```
+
+    <Warning>
+      Make sure your main HTML file is named `index.html` at the root level.
+    </Warning>
+  </Step>
+
+  <Step title="Enable GitHub Pages">
+    1. In your repository, click **Settings** (top navigation)
+    2. Scroll down and click **Pages** in the left sidebar
+    3. Under **Source**, select **Deploy from a branch**
+    4. Under **Branch**, select `main` (or `master`) and folder `/ (root)`
+    5. Click **Save**
+
+    GitHub will begin deploying your site. This takes 1-2 minutes.
+
+    <Note>
+      You'll see a message: "Your site is ready to be published at `https://username.github.io/repository-name/`"
+    </Note>
+  </Step>
+
+  <Step title="Access Your Live Portfolio">
+    1. Wait for the deployment to complete (refresh the Pages settings page)
+    2. Once ready, you'll see: **"Your site is live at `https://...`"**
+    3. Click the URL to view your live portfolio
+    4. Share this URL with anyone to showcase your work
+
+    <Tip>
+      Bookmark your GitHub Pages URL or add it to your repository description for easy access.
+    </Tip>
+  </Step>
+</Steps>
+
+## Updating Your Portfolio
+
+To make changes after deployment:
+
+<Steps>
+  <Step title="Edit Your Local Files">
+    Make changes to your HTML, CSS, or JavaScript files locally.
+  </Step>
+
+  <Step title="Upload Changes">
+    **Via Web Interface:**
+    - Navigate to the file in your repository
+    - Click the pencil icon (Edit)
+    - Make changes and commit
+
+    **Via Git:**
+    ```bash
+    git add .
+    git commit -m "Update portfolio content"
+    git push
+    ```
+  </Step>
+
+  <Step title="Wait for Redeployment">
+    GitHub Pages automatically redeploys when you push changes. Wait 1-2 minutes, then refresh your live site.
+  </Step>
+</Steps>
+
+## Custom Domain Setup (Optional)
+
+<Steps>
+  <Step title="Purchase a Domain">
+    Buy a domain from a registrar like:
+    - Namecheap
+    - Google Domains
+    - GoDaddy
+    - Cloudflare
+  </Step>
+
+  <Step title="Configure DNS Records">
+    In your domain registrar's DNS settings, add these records:
+
+    **For apex domain (example.com):**
+    ```
+    Type: A
+    Name: @
+    Value: 185.199.108.153
+
+    Type: A
+    Name: @
+    Value: 185.199.109.153
+
+    Type: A
+    Name: @
+    Value: 185.199.110.153
+
+    Type: A
+    Name: @
+    Value: 185.199.111.153
+    ```
+
+    **For subdomain (www.example.com):**
+    ```
+    Type: CNAME
+    Name: www
+    Value: username.github.io
+    ```
+  </Step>
+
+  <Step title="Configure GitHub Pages">
+    1. Go to repository **Settings** > **Pages**
+    2. Under **Custom domain**, enter your domain (e.g., `www.example.com`)
+    3. Click **Save**
+    4. Wait for DNS check to complete
+    5. Enable **Enforce HTTPS** (recommended)
+  </Step>
+
+  <Step title="Wait for Propagation">
+    DNS changes can take 24-48 hours to propagate. Your site will be accessible at your custom domain once complete.
+  </Step>
+</Steps>
+
+<Warning>
+  Keep the CNAME file in your repository. GitHub Pages creates this automatically when you set a custom domain.
+</Warning>
+
+## Troubleshooting
+
+### Site Not Loading
+
+<AccordionGroup>
+  <Accordion title="Check file structure">
+    Ensure `index.html` is at the root level of your repository, not in a subfolder.
+  </Accordion>
+
+  <Accordion title="Verify GitHub Pages is enabled">
+    Go to Settings > Pages and confirm the source branch is set correctly.
+  </Accordion>
+
+  <Accordion title="Check for build errors">
+    Look at the **Actions** tab in your repository for deployment logs.
+  </Accordion>
+</AccordionGroup>
+
+### CSS/Images Not Loading
+
+<AccordionGroup>
+  <Accordion title="Use relative paths">
+    Change absolute paths like `/css/style.css` to relative paths like `css/style.css` or `./css/style.css`.
+  </Accordion>
+
+  <Accordion title="Check file names">
+    Ensure file names match exactly (case-sensitive on GitHub Pages).
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<Tip>
+  **Version Control Benefits**: Using GitHub for deployment also gives you version control, allowing you to track changes and revert if needed.
+</Tip>
+
+<Tip>
+  **GitHub Actions**: For advanced users, you can automate deployments using GitHub Actions workflows.
+</Tip>
+
+<Note>
+  GitHub Pages has a soft bandwidth limit of 100GB/month and 10 builds/hour. This is more than sufficient for personal portfolios.
+</Note>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Custom Domain"
+    icon="globe"
+  >
+    Follow the custom domain setup guide above to use your own domain name.
+  </Card>
+
+  <Card
+    title="SEO Optimization"
+    icon="chart-line"
+  >
+    Add meta tags and optimize your portfolio for search engines.
+  </Card>
+</CardGroup>

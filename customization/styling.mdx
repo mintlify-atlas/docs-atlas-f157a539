@@ -1,0 +1,550 @@
+---
+title: "Styling & Theming"
+description: "Customize the visual appearance of your portfolio with CSS variables, color schemes, fonts, and layout adjustments."
+---
+
+The template uses CSS custom properties (variables) for easy theming. All styling is controlled through `css/style.css`.
+
+## CSS Variables
+
+The core design system is defined using CSS variables in the `:root` selector at **lines 1-9**:
+
+```css style.css
+:root {
+  --accent-color: #4A90E2;
+  --secondary-color: #1A1F2E;
+  --dark-color: #0D1117;
+  --grey-color: #2C3E50;
+  --body-text-color: #E1E8ED;
+  --light-text-color: #B8C5D6;
+  --link-color: #4A90E2;
+}
+```
+
+### Variable Reference
+
+| Variable | Default Value | Usage |
+|----------|---------------|-------|
+| `--accent-color` | `#4A90E2` | Primary brand color, buttons, links, icons |
+| `--secondary-color` | `#1A1F2E` | Main background color |
+| `--dark-color` | `#0D1117` | Sidebar background, darker elements |
+| `--grey-color` | `#2C3E50` | Borders and dividers |
+| `--body-text-color` | `#E1E8ED` | Primary text color |
+| `--light-text-color` | `#B8C5D6` | Secondary text, paragraphs |
+| `--link-color` | `#4A90E2` | Hyperlink color |
+
+## Changing the Color Scheme
+
+<Steps>
+  <Step title="Choose Your Accent Color">
+    Replace `--accent-color` with your brand color. This affects buttons, icons, and interactive elements.
+    
+    ```css style.css
+    :root {
+      --accent-color: #FF6B6B; /* Red theme */
+    }
+    ```
+  </Step>
+  
+  <Step title="Adjust Background Colors">
+    Modify `--secondary-color` and `--dark-color` for different background tones.
+    
+    ```css style.css
+    :root {
+      --secondary-color: #2D3748; /* Lighter dark theme */
+      --dark-color: #1A202C;
+    }
+    ```
+  </Step>
+  
+  <Step title="Update Text Colors">
+    Change text colors for better contrast with your new background.
+    
+    ```css style.css
+    :root {
+      --body-text-color: #F7FAFC;
+      --light-text-color: #CBD5E0;
+    }
+    ```
+  </Step>
+</Steps>
+
+### Pre-made Color Schemes
+
+<CodeGroup>
+
+```css Blue (Default)
+:root {
+  --accent-color: #4A90E2;
+  --secondary-color: #1A1F2E;
+  --dark-color: #0D1117;
+  --grey-color: #2C3E50;
+  --body-text-color: #E1E8ED;
+  --light-text-color: #B8C5D6;
+  --link-color: #4A90E2;
+}
+```
+
+```css Purple
+:root {
+  --accent-color: #9333EA;
+  --secondary-color: #1E1B29;
+  --dark-color: #0F0D15;
+  --grey-color: #3D3549;
+  --body-text-color: #E9E3F0;
+  --light-text-color: #BFB3CC;
+  --link-color: #9333EA;
+}
+```
+
+```css Green
+:root {
+  --accent-color: #10B981;
+  --secondary-color: #1A2E25;
+  --dark-color: #0D1712;
+  --grey-color: #2C5042;
+  --body-text-color: #D1FAE5;
+  --light-text-color: #A7F3D0;
+  --link-color: #10B981;
+}
+```
+
+```css Orange
+:root {
+  --accent-color: #F97316;
+  --secondary-color: #2E1F1A;
+  --dark-color: #17100D;
+  --grey-color: #50362C;
+  --body-text-color: #FED7AA;
+  --light-text-color: #FDBA74;
+  --link-color: #F97316;
+}
+```
+
+</CodeGroup>
+
+## Typography Customization
+
+The template uses Google Fonts with Inter and Nunito Sans. Typography settings start at **line 17**:
+
+```css style.css
+body {
+  font-family: 'Inter', 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--body-text-color);
+  background-color: var(--secondary-color);
+  margin: 0;
+}
+```
+
+### Changing Fonts
+
+<Steps>
+  <Step title="Choose Google Fonts">
+    Visit [Google Fonts](https://fonts.google.com) and select your preferred fonts.
+  </Step>
+  
+  <Step title="Update Font Link in HTML">
+    In `index.html` around **lines 39-43**, replace the font import:
+    
+    ```html index.html
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    ```
+  </Step>
+  
+  <Step title="Update CSS Font Family">
+    Modify the `font-family` in `style.css`:
+    
+    ```css style.css
+    body {
+      font-family: 'Poppins', 'Roboto', sans-serif;
+    }
+    ```
+  </Step>
+</Steps>
+
+### Heading Sizes
+
+Heading styles are defined at **lines 74-77**:
+
+```css style.css
+h1, .h1 { font-size: 4.4rem; font-weight: 800; margin: 0.3em 0; }
+h2, .h2 { font-size: 2.6rem; font-weight: 700; margin: 0.7em 0 0.5em; }
+h3, .h3 { font-size: 1.7rem; font-weight: 600; }
+h4, .h4 { font-size: 1.4rem; font-weight: 600; margin: 1em 0 0.5em; }
+```
+
+<Tip>
+  Reduce all heading sizes proportionally for a more compact design by multiplying each size by 0.8 or 0.9.
+</Tip>
+
+### Body Text
+
+Paragraph styling is at **lines 79-83**:
+
+```css style.css
+p {
+  color: var(--light-text-color);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+```
+
+The `lead-paragraph` class creates larger introductory text:
+
+```css style.css
+.lead-paragraph {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #d1d9e0;
+}
+```
+
+## Navigation Styling
+
+The vertical navigation bar styling starts at **line 104**:
+
+```css style.css
+.navigation {
+  position: fixed;
+  left: 20px;
+  top: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nav-pills {
+  background: transparent;
+  padding: 1rem 0.6rem;
+  border-radius: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.nav-link {
+  color: #6a829e;
+  font-size: 2rem;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent-color);
+  background: transparent !important;
+}
+```
+
+### Customization Options
+
+<CodeGroup>
+
+```css Larger Icons
+.nav-link {
+  font-size: 2.5rem;
+  width: 70px;
+  height: 70px;
+}
+```
+
+```css Background on Hover
+.nav-link:hover,
+.nav-link.active {
+  color: white;
+  background: var(--accent-color) !important;
+}
+```
+
+```css Right-side Navigation
+.navigation {
+  left: auto;
+  right: 20px;
+}
+```
+
+</CodeGroup>
+
+## Sidebar Customization
+
+The hero sidebar styling is at **lines 154-198**:
+
+```css style.css
+.hero-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 340px;
+  height: 100vh;
+  background: rgba(13, 17, 23, 0.94);
+  backdrop-filter: blur(10px);
+  border-left: 1px solid rgba(74, 144, 226, 0.14);
+  z-index: 900;
+  overflow-y: auto;
+  color: #e1e8ed;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-sidebar .hero-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--accent-color);
+  box-shadow: 0 0 30px rgba(74, 144, 226, 0.28);
+  margin-bottom: 1.8rem;
+  transition: transform 0.4s ease;
+}
+```
+
+### Adjusting Sidebar Width
+
+```css style.css
+.hero-sidebar {
+  width: 380px; /* Wider sidebar */
+}
+
+.main-content {
+  margin-right: 380px; /* Match sidebar width */
+}
+```
+
+<Warning>
+  Always update both `.hero-sidebar` width and `.main-content` margin-right to the same value to prevent layout issues.
+</Warning>
+
+## Social Icons Styling
+
+Social icon styling is at **lines 200-230**:
+
+```css style.css
+.social-icon {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 1.8rem 0 3rem;
+  position: relative;
+  z-index: 999;
+}
+
+.social-link {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  color: white;
+  font-size: 1.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.09);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1000;
+}
+
+.social-link:hover {
+  background: var(--accent-color);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(74, 144, 226, 0.35);
+}
+```
+
+### Icon Customizations
+
+<CodeGroup>
+
+```css Square Icons
+.social-link {
+  border-radius: 12px; /* Rounded square */
+}
+```
+
+```css Colored Icons
+.social-link {
+  background: var(--accent-color);
+  color: white;
+}
+
+.social-link:hover {
+  background: var(--dark-color);
+}
+```
+
+```css Larger Icons
+.social-link {
+  width: 60px;
+  height: 60px;
+  font-size: 1.75rem;
+}
+```
+
+</CodeGroup>
+
+## Button Styles
+
+Bootstrap buttons are used throughout. Customize the primary button:
+
+```css style.css
+.btn-primary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #3a7bc8;
+  border-color: #3a7bc8;
+}
+```
+
+Add custom button styles:
+
+```css style.css
+.btn-custom {
+  background: linear-gradient(135deg, var(--accent-color), #6aa8f5);
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(74, 144, 226, 0.3);
+}
+```
+
+## Skills Section Styling
+
+Skills grid styling is at **lines 261-291**:
+
+```css style.css
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.4rem 2rem;
+  margin: 2.5rem 0;
+}
+
+.skills-list h4 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  padding: 16px 20px;
+  background: rgba(74, 144, 226, 0.07);
+  border: 1px solid rgba(74, 144, 226, 0.15);
+  border-radius: 12px;
+  color: var(--body-text-color);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.skills-list h4:hover {
+  background: rgba(74, 144, 226, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.skills-list .ti {
+  font-size: 2rem;
+  color: var(--accent-color);
+}
+```
+
+### Alternative Skill Layouts
+
+<CodeGroup>
+
+```css Larger Cards
+.skills-list {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.skills-list h4 {
+  padding: 24px 28px;
+  font-size: 1.6rem;
+}
+```
+
+```css Pill Style
+.skills-list h4 {
+  border-radius: 50px;
+  padding: 12px 24px;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+}
+```
+
+```css Minimal Style
+.skills-list h4 {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+}
+```
+
+</CodeGroup>
+
+## Responsive Adjustments
+
+The template includes responsive breakpoints at **lines 437-482**:
+
+```css style.css
+@media (max-width: 1199px) {
+  .hero-sidebar {
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 320px;
+  }
+
+  .main-content {
+    margin-right: 0;
+  }
+
+  .offcanvas-btn {
+    display: block;
+  }
+
+  .navigation {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  h1, .h1 { font-size: 3.6rem; }
+  h2, .h2 { font-size: 2.3rem; }
+}
+
+@media (max-width: 576px) {
+  h1, .h1 { font-size: 3rem; }
+  .lead-paragraph { font-size: 1.15rem; }
+  .skills-list { grid-template-columns: 1fr; }
+}
+```
+
+<Tip>
+  Test your customizations at different screen sizes to ensure they work well on mobile devices.
+</Tip>

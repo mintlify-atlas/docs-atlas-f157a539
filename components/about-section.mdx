@@ -1,0 +1,270 @@
+---
+title: 'About Section Component'
+description: 'Personal info display, services grid layout, and content organization'
+---
+
+# About Section Component
+
+The about section contains the main bio, personal information, and a services grid showcasing available offerings.
+
+## Section Structure
+
+```html
+<section id="about" class="mt-0">
+    <div class="py-4 my-4">
+        <h1 class="fw-bold mt-5">Sobre Mí</h1>
+        <p class="lead-paragraph my-4">
+            Soy un desarrollador de software con experiencia en el diseño y desarrollo 
+            de sistemas de gestión, automatización de procesos y aplicaciones personalizadas.
+            <!-- Full bio text -->
+        </p>
+    </div>
+    
+    <hr class="mid-break my-2"> <!--linea divisoria -->
+
+    <div class="py-4 my-4">
+        <h2 class="fw-bold">Personal Info</h2>
+        <ul class="list-unstyled">
+            <li><b>Edad:</b> 25 </li>
+            <li><b>Ubicación:</b> Bogotá, Colombia</li>
+            <li><b>E-mail:</b> zvzgmzq@gmail.com</li>
+            <li><b>Teléfono:</b> +57 322 952 0608</li>
+        </ul>
+    </div>
+    
+    <hr class="mid-break my-2"> <!--linea divisoria -->
+
+    <div class="py-4 my-4">
+        <h2 class="fw-bold pt-4 pb-5">Servicios</h2>
+        <!-- Services grid -->
+    </div>
+</section>
+```
+
+## Personal Information Display
+
+The personal info uses an unstyled list with bold labels.
+
+```html
+<div class="py-4 my-4">
+    <h2 class="fw-bold">Personal Info</h2>
+
+    <ul class="list-unstyled">
+        <li><b>Edad:</b> 25 </li>
+        <li><b>Ubicación:</b> Bogotá, Colombia</li>
+        <li><b>E-mail:</b> zvzgmzq@gmail.com</li>
+        <li><b>Teléfono:</b> +57 322 952 0608</li>
+    </ul>
+</div>
+```
+
+## Services Grid Layout
+
+The services section uses Bootstrap's responsive grid system with a 2-column layout on small screens and above.
+
+### Grid Structure
+
+```html
+<div class="py-4 my-4">
+    <h2 class="fw-bold pt-4 pb-5">Servicios</h2>
+
+    <div class="row row-cols-1 row-cols-sm-2">
+
+        <div class="col d-flex align-items-start pb-5">
+            <div>
+                <i class="ti ti-device-imac-code"></i>
+                <h4 class="fw-bold mb-0">Desarrollo Web</h4>
+                <p class="mb-1">
+                    Desarrollo de aplicaciones web modernas, escalables y eficientes 
+                    utilizando JavaScript, Node.js, HTML y CSS.
+                </p>
+                <a href="https://github.com/GmzQzvZ" 
+                   class="btn btn-outline-primary btn-sm mt-1" 
+                   target="_blank" rel="noopener noreferrer">
+                    Ver proyectos en GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="col d-flex align-items-start pb-5">
+            <div>
+                <i class="ti ti-settings-automation"></i>
+                <h4 class="fw-bold mb-0">Automatización de Procesos</h4>
+                <p class="mb-1">
+                    Optimización de tareas repetitivas mediante scripts y soluciones digitales
+                    que mejoran la eficiencia y reducen errores operativos.
+                </p>
+                <a href="https://github.com/GmzQzvZ" 
+                   class="btn btn-outline-primary btn-sm mt-1" 
+                   target="_blank" rel="noopener noreferrer">
+                    Ver soluciones
+                </a>
+            </div>
+        </div>
+
+        <div class="col d-flex align-items-start pb-5">
+            <div>
+                <i class="ti ti-sitemap"></i>
+                <h4 class="fw-bold mb-0">Desarrollo de Sistemas</h4>
+                <p class="mb-1">
+                    Creación de sistemas completos a la medida para gestión, control y 
+                    optimización de procesos empresariales.
+                </p>
+                <a href="https://github.com/GmzQzvZ/facturas_js" 
+                   class="btn btn-outline-primary btn-sm mt-1" 
+                   target="_blank" rel="noopener noreferrer">
+                    Ver sistema
+                </a>
+            </div>
+        </div>
+
+        <div class="col d-flex align-items-start pb-5">
+            <div>
+                <i class="ti ti-user-search"></i>
+                <h4 class="fw-bold mb-0">Consultoría Técnica</h4>
+                <p class="mb-1">
+                    Asesoría técnica en automatización, mejora digital y soluciones 
+                    prácticas enfocadas en resultados reales.
+                </p>
+                <a href="https://wa.me/573229520608" 
+                   class="btn btn-outline-primary btn-sm mt-1" 
+                   target="_blank" rel="noopener noreferrer">
+                    Contactar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+```
+
+### Service Card Components
+
+<Accordion title="Service Card Structure">
+  Each service card contains:
+  - **Icon** (Tabler Icons)
+  - **Title** (h4 heading)
+  - **Description** (paragraph)
+  - **Call-to-action button** (external link)
+
+  ```html
+  <div class="col d-flex align-items-start pb-5">
+      <div>
+          <i class="ti ti-[icon-name]"></i>
+          <h4 class="fw-bold mb-0">Service Title</h4>
+          <p class="mb-1">Service description text.</p>
+          <a href="#" class="btn btn-outline-primary btn-sm mt-1" 
+             target="_blank" rel="noopener noreferrer">
+              Button Text
+          </a>
+      </div>
+  </div>
+  ```
+</Accordion>
+
+## Section Dividers
+
+Horizontal rules are used to separate subsections.
+
+```html
+<hr class="mid-break my-2">
+```
+
+## Typography Styling
+
+The section uses custom typography defined in the CSS.
+
+```css
+section h1,
+section h2 {
+  margin-bottom: 0.6rem;
+  position: relative;
+  padding-bottom: 0.3rem;
+}
+
+section h1::after,
+section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 70px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+h1, .h1 { font-size: 4.4rem; font-weight: 800; margin: 0.3em 0; }
+h2, .h2 { font-size: 2.6rem; font-weight: 700; margin: 0.7em 0 0.5em; }
+
+p {
+  color: var(--light-text-color);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.lead-paragraph {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: #d1d9e0;
+}
+```
+
+## Grid Configuration
+
+<ParamField path="row-cols-1" type="class">
+  Single column on extra small screens (< 576px)
+</ParamField>
+
+<ParamField path="row-cols-sm-2" type="class">
+  Two columns on small screens and above (≥ 576px)
+</ParamField>
+
+<ParamField path="d-flex align-items-start" type="class">
+  Flexbox layout with items aligned to the start
+</ParamField>
+
+<ParamField path="pb-5" type="class">
+  Padding bottom of 3rem for spacing between cards
+</ParamField>
+
+## Tabler Icons
+
+Icons are implemented using Tabler Icons library.
+
+```html
+<!-- CDN Link in head -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+
+<!-- Icon usage -->
+<i class="ti ti-device-imac-code"></i>
+<i class="ti ti-settings-automation"></i>
+<i class="ti ti-sitemap"></i>
+<i class="ti ti-user-search"></i>
+```
+
+## Responsive Behavior
+
+- **Desktop/Tablet**: 2-column grid layout
+- **Mobile**: Single column stack
+- **Typography**: Font sizes reduce on smaller screens
+
+```css
+@media (max-width: 991px) {
+  h1, .h1 { font-size: 3.6rem; }
+  h2, .h2 { font-size: 2.3rem; }
+}
+
+@media (max-width: 576px) {
+  h1, .h1 { font-size: 3rem; }
+  .lead-paragraph { font-size: 1.15rem; }
+}
+```
+
+## Key Features
+
+- **Three subsections** separated by horizontal dividers
+- **Responsive grid** using Bootstrap utilities
+- **Icon integration** with Tabler Icons
+- **Underline accent** on section headings (blue bar)
+- **Call-to-action buttons** for each service
+- **External links** with proper `target` and `rel` attributes

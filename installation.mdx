@@ -1,0 +1,481 @@
+---
+title: Installation
+description: Complete setup guide with file structure overview and local preview instructions
+---
+
+# Installation
+
+This guide covers everything you need to know about setting up and understanding the portfolio template structure.
+
+## Prerequisites
+
+The beauty of this template is its simplicity - you only need:
+
+<CardGroup cols={2}>
+  <Card title="Web Browser" icon="browser">
+    Any modern browser (Chrome, Firefox, Safari, Edge)
+  </Card>
+  <Card title="Text Editor" icon="code">
+    VS Code, Sublime Text, Atom, or any code editor
+  </Card>
+</CardGroup>
+
+<Note>
+No Node.js, build tools, or package managers required! This is a pure HTML/CSS/JavaScript template.
+</Note>
+
+## Getting the Template
+
+Choose one of the following methods to get started:
+
+<Tabs>
+  <Tab title="Download ZIP">
+    <Steps>
+      <Step title="Download">
+        Download the template as a ZIP file from the repository
+      </Step>
+      <Step title="Extract">
+        Extract the ZIP file to your desired location:
+        ```bash
+        unzip portfolio-template.zip
+        cd portfolio-template/
+        ```
+      </Step>
+      <Step title="Open">
+        Navigate to the extracted folder and open `index.html`
+      </Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="Git Clone">
+    <Steps>
+      <Step title="Clone Repository">
+        ```bash
+        git clone <repository-url>
+        cd portfolio-template/
+        ```
+      </Step>
+      <Step title="Open in Editor">
+        ```bash
+        code .  # If using VS Code
+        ```
+      </Step>
+      <Step title="Preview">
+        Open `index.html` in your browser
+      </Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="Fork on GitHub">
+    <Steps>
+      <Step title="Fork Repository">
+        Click the "Fork" button on GitHub to create your own copy
+      </Step>
+      <Step title="Clone Your Fork">
+        ```bash
+        git clone https://github.com/YOUR-USERNAME/portfolio-template.git
+        cd portfolio-template/
+        ```
+      </Step>
+      <Step title="Start Customizing">
+        Make changes and push to your fork for easy GitHub Pages deployment
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## File Structure
+
+Here's how the template is organized:
+
+```
+template/
+├── index.html          # Main portfolio page
+├── 404.html           # Custom 404 error page
+├── css/
+│   ├── style.css      # Custom styles and theme variables
+│   └── vendor.css     # Third-party CSS (if any)
+├── js/
+│   └── script.js      # Custom JavaScript functionality
+├── images/
+│   ├── favicon/       # Favicon files (16px, 32px, 96px)
+│   ├── sin.png        # Demo profile image
+│   ├── crm.jpg        # Portfolio project screenshot
+│   ├── viajes.png     # Portfolio project screenshot
+│   ├── task.png       # Portfolio project screenshot
+│   └── whatsappbot.jpg # Portfolio project screenshot
+└── README.md          # Project documentation
+```
+
+### Core Files Explained
+
+<AccordionGroup>
+  <Accordion title="index.html - Main Portfolio Page">
+    The main HTML file containing all sections:
+    - **Lines 1-51**: HTML head with meta tags, SEO, and external libraries
+    - **Lines 53-98**: Mobile offcanvas navigation
+    - **Lines 103-139**: Vertical navigation bar (desktop)
+    - **Lines 144-158**: Hero/Home section
+    - **Lines 160-256**: About section with services
+    - **Lines 258-345**: Resume section (skills, experience, education)
+    - **Lines 347-401**: Portfolio grid
+    - **Lines 404-498**: Contact section with form
+    - **Lines 501-527**: Fixed sidebar (desktop)
+    - **Lines 529-584**: Scripts and initialization
+
+    Total: 588 lines of well-structured HTML
+  </Accordion>
+
+  <Accordion title="css/style.css - Custom Styling">
+    The main stylesheet with all custom styles:
+    
+    **CSS Variables** (lines 1-9):
+    ```css
+    :root {
+      --accent-color: #4A90E2;
+      --secondary-color: #1A1F2E;
+      --dark-color: #0D1117;
+      --grey-color: #2C3E50;
+      --body-text-color: #E1E8ED;
+      --light-text-color: #B8C5D6;
+      --link-color: #4A90E2;
+    }
+    ```
+    
+    **Key Sections**:
+    - Typography and spacing (lines 27-89)
+    - Navigation styles (lines 104-150)
+    - Hero sidebar (lines 154-231)
+    - Skills grid (lines 261-292)
+    - Portfolio grid (lines 296-409)
+    - Contact cards (lines 414-433)
+    - Responsive breakpoints (lines 437-496)
+  </Accordion>
+
+  <Accordion title="js/script.js - JavaScript Features">
+    Custom JavaScript functionality including:
+    
+    **Chocolat Lightbox** (lines 6-12):
+    ```javascript
+    var initChocolat = function () {
+      Chocolat(document.querySelectorAll('.image-link'), {
+        imageSize: 'contain',
+        loop: true,
+      })
+    }
+    ```
+    
+    **AOS Initialization** (lines 62-66):
+    ```javascript
+    AOS.init({
+      duration: 600,
+      once: true,
+    })
+    ```
+    
+    **Isotope Grid** (lines 71-106): For portfolio filtering (if needed)
+  </Accordion>
+
+  <Accordion title="404.html - Error Page">
+    A custom 404 error page (2,313 bytes) for when users navigate to non-existent pages. Useful when deploying to hosting services.
+  </Accordion>
+</AccordionGroup>
+
+## External Dependencies
+
+The template uses CDN-hosted libraries (no local installation needed):
+
+<CodeGroup>
+```html Bootstrap 5.2.3 (CSS Framework)
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+      rel="stylesheet" 
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" 
+      crossorigin="anonymous">
+```
+
+```html Tabler Icons (Icon Font)
+<link rel="stylesheet" 
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+```
+
+```html AOS - Animate on Scroll
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+```
+
+```html Google Fonts
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&family=Nunito+Sans:wght@300;400;600;700&display=swap" 
+      rel="stylesheet">
+```
+</CodeGroup>
+
+<Tip>
+All libraries are loaded from CDNs, which means:
+- No npm install required
+- Faster initial page loads (browser caching)
+- Automatic updates to patch versions
+- Works offline if previously cached
+</Tip>
+
+## Opening and Previewing
+
+### Method 1: Direct Browser Open
+
+Simply double-click `index.html` or open it via your browser's File menu:
+
+<CodeGroup>
+```bash macOS
+open index.html
+```
+
+```bash Windows
+start index.html
+```
+
+```bash Linux
+xdg-open index.html
+```
+</CodeGroup>
+
+### Method 2: VS Code Live Server
+
+For a better development experience with auto-reload:
+
+<Steps>
+  <Step title="Install Live Server">
+    Install the "Live Server" extension in VS Code
+  </Step>
+  
+  <Step title="Open Folder">
+    Open the template folder in VS Code:
+    ```bash
+    code .
+    ```
+  </Step>
+  
+  <Step title="Start Server">
+    Right-click `index.html` and select "Open with Live Server"
+    
+    Or click "Go Live" in the status bar
+  </Step>
+  
+  <Step title="Preview">
+    Your browser will open at `http://127.0.0.1:5500/index.html`
+    
+    Changes auto-reload when you save files!
+  </Step>
+</Steps>
+
+### Method 3: Python Simple Server
+
+If you have Python installed:
+
+<CodeGroup>
+```bash Python 3
+cd template/
+python3 -m http.server 8000
+
+# Visit http://localhost:8000
+```
+
+```bash Python 2
+cd template/
+python -m SimpleHTTPServer 8000
+
+# Visit http://localhost:8000
+```
+</CodeGroup>
+
+### Method 4: Node.js http-server
+
+If you have Node.js installed:
+
+```bash
+npx http-server -p 8000
+
+# Visit http://localhost:8000
+```
+
+## Understanding the Navigation System
+
+The template uses Bootstrap's ScrollSpy for automatic navigation highlighting:
+
+```html
+<body data-bs-spy="scroll" data-bs-target="#navigation-bar" tabindex="0">
+```
+
+The navigation links use hash anchors that correspond to section IDs:
+
+| Nav Link | Section ID | Content |
+|----------|-----------|----------|
+| `#home` | `<section id="home">` | Hero introduction |
+| `#about` | `<section id="about">` | About and services |
+| `#resume` | `<section id="resume">` | Skills and experience |
+| `#portfolio` | `<section id="portfolio">` | Project showcase |
+| `#contact` | `<section id="contact">` | Contact form |
+
+<Note>
+The navigation automatically highlights as you scroll. The active class is managed by Bootstrap's ScrollSpy.
+</Note>
+
+## Responsive Design Breakpoints
+
+The template adapts to different screen sizes:
+
+```css
+/* Desktop: Sidebar visible, navigation icons on left */
+@media (min-width: 1200px) {
+  .hero-sidebar { display: flex; }
+  .navigation { display: flex; }
+  .offcanvas-btn { display: none; }
+}
+
+/* Tablet/Mobile: Sidebar becomes offcanvas */
+@media (max-width: 1199px) {
+  .hero-sidebar { transform: translateX(100%); }
+  .navigation { display: none; }
+  .offcanvas-btn { display: block; }
+}
+
+/* Mobile optimizations */
+@media (max-width: 576px) {
+  h1 { font-size: 3rem; }
+  .skills-list { grid-template-columns: 1fr; }
+}
+```
+
+## Image Assets
+
+The `images/` folder structure:
+
+<AccordionGroup>
+  <Accordion title="Profile Images">
+    - **sin.png**: Demo profile photo (replace with your own)
+    - Recommended: 300x300px minimum, square ratio, under 200KB
+  </Accordion>
+  
+  <Accordion title="Portfolio Screenshots">
+    - **crm.jpg**: CRM with invoicing project
+    - **viajes.png**: Travel agency website
+    - **task.png**: Ticket administrator app
+    - **whatsappbot.jpg**: WhatsApp bot project
+    
+    Replace these with your project screenshots (recommended: 600x400px)
+  </Accordion>
+  
+  <Accordion title="Favicon Files">
+    Located in `images/favicon/`:
+    - **icons8-dev-windows-10-16.png** (16x16)
+    - **icons8-dev-windows-10-32.png** (32x32)
+    - **icons8-dev-windows-10-96.png** (96x96)
+    
+    Replace with your own brand icon
+  </Accordion>
+</AccordionGroup>
+
+## Testing Your Installation
+
+Verify everything works correctly:
+
+<Steps>
+  <Step title="Visual Check">
+    - Profile image loads correctly
+    - All sections are visible
+    - Navigation highlights on scroll
+    - Portfolio grid displays projects
+  </Step>
+  
+  <Step title="Responsive Test">
+    Open DevTools (F12) and toggle device toolbar:
+    - Desktop: Sidebar visible on right
+    - Tablet: Hamburger menu appears
+    - Mobile: Offcanvas menu works
+  </Step>
+  
+  <Step title="Functionality Test">
+    - Click navigation icons (smooth scroll)
+    - Test contact form (opens WhatsApp)
+    - Click portfolio items (opens links)
+    - Hover effects work on cards
+  </Step>
+  
+  <Step title="Console Check">
+    Open browser console (F12 → Console):
+    - No errors should appear
+    - AOS should initialize
+    - Bootstrap tooltips should activate
+  </Step>
+</Steps>
+
+<Warning>
+If images don't load, check:
+1. File paths are relative (`images/profile.jpg` not `/images/profile.jpg`)
+2. Image files exist in the `images/` folder
+3. File extensions match exactly (case-sensitive on some systems)
+</Warning>
+
+## Next Steps
+
+Now that you have the template installed:
+
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/quickstart">
+    Follow the quick customization guide
+  </Card>
+  <Card title="Customization" icon="palette" href="/customization">
+    Deep dive into styling and content
+  </Card>
+  <Card title="Add Content" icon="pen-to-square" href="/customization#content">
+    Update your bio, projects, and resume
+  </Card>
+  <Card title="Deploy" icon="cloud-upload" href="/deployment">
+    Publish your portfolio online
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Styles not loading">
+    **Problem**: Page appears unstyled or broken
+    
+    **Solutions**:
+    1. Check internet connection (CDN libraries need to load)
+    2. Open browser console and check for 404 errors
+    3. Verify `css/style.css` path is correct
+    4. Clear browser cache (Cmd/Ctrl + Shift + R)
+  </Accordion>
+  
+  <Accordion title="Icons not showing">
+    **Problem**: Icon placeholders or squares instead of icons
+    
+    **Solutions**:
+    1. Check Tabler Icons CDN link in `<head>`
+    2. Verify icon class names (e.g., `ti ti-brand-github`)
+    3. Check browser console for font loading errors
+  </Accordion>
+  
+  <Accordion title="Images broken">
+    **Problem**: Images show broken icon or don't load
+    
+    **Solutions**:
+    1. Verify image files exist in `images/` folder
+    2. Check file paths (relative, not absolute)
+    3. Ensure file extensions match (jpg vs jpeg, png vs PNG)
+    4. Check file permissions (should be readable)
+  </Accordion>
+  
+  <Accordion title="Animations not working">
+    **Problem**: No scroll animations or transitions
+    
+    **Solutions**:
+    1. Check AOS library loaded from CDN
+    2. Verify `AOS.init()` in scripts section
+    3. Ensure elements have `data-aos` attributes
+    4. Check browser console for JavaScript errors
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+Still having issues? Check the browser console (F12 → Console) for error messages - they usually point directly to the problem!
+</Tip>

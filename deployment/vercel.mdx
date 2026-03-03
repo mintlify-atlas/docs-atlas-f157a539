@@ -1,0 +1,495 @@
+---
+title: 'Deploy to Vercel'
+description: 'Deploy your portfolio template using Vercel'
+---
+
+## Overview
+
+Vercel is a frontend cloud platform optimized for performance and developer experience. It offers **lightning-fast deployments** with automatic optimization and global edge network delivery.
+
+<Note>
+  Vercel's free "Hobby" tier includes unlimited deployments, automatic SSL, and 100GB bandwidth/month.
+</Note>
+
+## Prerequisites
+
+- Your portfolio template folder ready to deploy
+- An email address or GitHub account
+- (Optional) Git repository for continuous deployment
+
+## Why Choose Vercel?
+
+- **Fastest global CDN**: Content delivered from 100+ edge locations worldwide
+- **Automatic optimization**: Image optimization, compression, and caching
+- **Instant deployments**: Changes go live in seconds
+- **Built-in analytics**: Performance monitoring included
+- **Zero configuration**: Works out of the box for static sites
+
+## Method 1: Import from GitHub (Recommended)
+
+<Steps>
+  <Step title="Sign Up for Vercel">
+    1. Go to [vercel.com](https://vercel.com)
+    2. Click **Sign Up**
+    3. Choose **Continue with GitHub** (recommended) or email
+    4. Authorize Vercel to access your GitHub account
+    5. Complete the registration process
+
+    <Tip>
+      Using GitHub for sign-up streamlines the import process and enables automatic deployments.
+    </Tip>
+  </Step>
+
+  <Step title="Push Portfolio to GitHub">
+    If you haven't already:
+
+    1. Create a new GitHub repository
+    2. Upload your portfolio files
+    3. Ensure `index.html` is at the root level
+
+    See the [GitHub Pages guide](/deployment/github-pages) for detailed instructions.
+  </Step>
+
+  <Step title="Import Your Repository">
+    1. In your [Vercel dashboard](https://vercel.com/dashboard), click **Add New**
+    2. Select **Project**
+    3. Click **Continue with GitHub**
+    4. Choose your portfolio repository from the list
+       - If you don't see it, click **Adjust GitHub App Permissions**
+    5. Click **Import**
+
+    <Note>
+      Vercel automatically detects that this is a static site and configures everything.
+    </Note>
+  </Step>
+
+  <Step title="Configure Project Settings">
+    For a static HTML portfolio:
+
+    - **Framework Preset**: Select "Other" or leave as detected
+    - **Root Directory**: Leave as `.` (current directory)
+    - **Build Command**: Leave empty (no build needed)
+    - **Output Directory**: Leave empty or enter `.`
+    - **Install Command**: Leave empty
+
+    Click **Deploy**
+
+    <Tip>
+      Vercel's smart detection usually fills these in correctly. For static sites, you typically don't need to change anything.
+    </Tip>
+  </Step>
+
+  <Step title="Deployment Complete">
+    1. Vercel builds and deploys your site (10-20 seconds)
+    2. You'll see a success screen with confetti animation
+    3. Your portfolio is assigned a URL like:
+       ```
+       https://your-portfolio.vercel.app
+       ```
+    4. Click **Visit** to view your live portfolio
+
+    <Tip>
+      Vercel also creates preview URLs like `https://your-portfolio-git-main-username.vercel.app` for different branches.
+    </Tip>
+  </Step>
+</Steps>
+
+## Method 2: Manual Upload via CLI
+
+<Steps>
+  <Step title="Install Vercel CLI">
+    Open your terminal and install the Vercel CLI:
+
+    ```bash
+    npm install -g vercel
+    ```
+
+    <Note>
+      You need Node.js and npm installed on your computer. Download from [nodejs.org](https://nodejs.org).
+    </Note>
+  </Step>
+
+  <Step title="Navigate to Your Portfolio">
+    ```bash
+    cd /path/to/your/portfolio
+    ```
+  </Step>
+
+  <Step title="Deploy with Vercel CLI">
+    ```bash
+    vercel
+    ```
+
+    Follow the prompts:
+    1. **Set up and deploy**: Press Enter
+    2. **Which scope**: Select your account
+    3. **Link to existing project?**: No (for first deployment)
+    4. **What's your project's name?**: Enter a name or press Enter
+    5. **In which directory is your code located?**: Press Enter (current directory)
+    6. **Want to override settings?**: No
+
+    Vercel uploads and deploys your portfolio.
+  </Step>
+
+  <Step title="Access Your Deployment">
+    Once complete, Vercel displays:
+    ```
+    ✅  Production: https://your-portfolio.vercel.app
+    ```
+
+    Your portfolio is now live.
+
+    <Tip>
+      Run `vercel --prod` to deploy directly to production, or just `vercel` for preview deployments.
+    </Tip>
+  </Step>
+</Steps>
+
+## Method 3: Drag-and-Drop Upload
+
+<Steps>
+  <Step title="Prepare Your Portfolio">
+    1. Ensure all files are in a single folder
+    2. Verify `index.html` is at the root level
+    3. Compress the folder into a `.zip` file (optional, for easier upload)
+  </Step>
+
+  <Step title="Upload via Dashboard">
+    1. Log in to your [Vercel dashboard](https://vercel.com/dashboard)
+    2. Click **Add New** > **Project**
+    3. Look for the **Manual Upload** option
+    4. Drag your portfolio folder (or .zip file) to the upload area
+    5. Vercel uploads and deploys automatically
+
+    <Warning>
+      Manual uploads don't support automatic redeployments. Use Git-based deployment for automatic updates.
+    </Warning>
+  </Step>
+</Steps>
+
+## Updating Your Portfolio
+
+### For Git-Based Deployments
+
+<Steps>
+  <Step title="Push Changes to GitHub">
+    ```bash
+    git add .
+    git commit -m "Update portfolio"
+    git push
+    ```
+  </Step>
+
+  <Step title="Automatic Deployment">
+    Vercel automatically:
+    1. Detects the push to GitHub
+    2. Triggers a new deployment
+    3. Updates your live site in seconds
+
+    You'll receive notifications via email or Vercel dashboard.
+  </Step>
+</Steps>
+
+### For CLI Deployments
+
+<Steps>
+  <Step title="Make Local Changes">
+    Edit your HTML, CSS, or JavaScript files.
+  </Step>
+
+  <Step title="Redeploy">
+    ```bash
+    cd /path/to/your/portfolio
+    vercel --prod
+    ```
+
+    Vercel uploads and deploys the new version.
+  </Step>
+</Steps>
+
+## Custom Domain Setup
+
+<Steps>
+  <Step title="Add Domain to Vercel">
+    1. In your project dashboard, click **Settings**
+    2. Click **Domains** in the sidebar
+    3. Enter your domain name (e.g., `johndoe.com` or `www.johndoe.com`)
+    4. Click **Add**
+
+    <Tip>
+      You can add multiple domains (e.g., both apex and www) and set one as primary.
+    </Tip>
+  </Step>
+
+  <Step title="Configure DNS Records">
+    Vercel shows exactly which DNS records to add:
+
+    **For apex domain (example.com):**
+    ```
+    Type: A
+    Name: @
+    Value: 76.76.21.21
+    ```
+
+    **For www subdomain (www.example.com):**
+    ```
+    Type: CNAME
+    Name: www
+    Value: cname.vercel-dns.com
+    ```
+
+    Add these records at your DNS provider (Namecheap, Cloudflare, etc.).
+
+    <Note>
+      Vercel provides **exact instructions** specific to your domain. Follow them carefully.
+    </Note>
+  </Step>
+
+  <Step title="Verify DNS Configuration">
+    1. Vercel automatically checks DNS configuration
+    2. Once records propagate (can take up to 48 hours), domain status shows **Valid Configuration**
+    3. SSL certificate is automatically provisioned
+    4. Your portfolio is accessible at your custom domain with HTTPS
+
+    <Tip>
+      Use Vercel's built-in DNS checker or [dnschecker.org](https://dnschecker.org) to verify propagation.
+    </Tip>
+  </Step>
+
+  <Step title="Set Primary Domain (Optional)">
+    If you have multiple domains:
+    1. Go to **Settings** > **Domains**
+    2. Click the three dots next to your preferred domain
+    3. Select **Set as Primary Domain**
+
+    Other domains will automatically redirect to the primary.
+  </Step>
+</Steps>
+
+## Environment Variables (If Needed)
+
+If your portfolio uses environment variables:
+
+<Steps>
+  <Step title="Add Environment Variables">
+    1. Go to project **Settings** > **Environment Variables**
+    2. Click **Add New**
+    3. Enter:
+       - **Name**: Variable name (e.g., `API_KEY`)
+       - **Value**: Variable value
+       - **Environment**: Production, Preview, or Development
+    4. Click **Save**
+  </Step>
+
+  <Step title="Access in Code">
+    Environment variables are available during build time:
+
+    ```javascript
+    // Access via process.env (if using build tools)
+    const apiKey = process.env.API_KEY;
+    ```
+
+    <Warning>
+      For client-side JavaScript in static sites, environment variables must be injected at build time. Don't expose sensitive keys client-side.
+    </Warning>
+  </Step>
+
+  <Step title="Redeploy to Apply Changes">
+    After adding environment variables, trigger a new deployment:
+    - Push to Git, or
+    - Click **Deployments** > **Redeploy**
+  </Step>
+</Steps>
+
+## Configuration Tips
+
+### vercel.json Configuration
+
+Create a `vercel.json` file in your project root for advanced configuration:
+
+```json
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/old-page",
+      "destination": "/new-page",
+      "permanent": true
+    }
+  ]
+}
+```
+
+<Tip>
+  For most static portfolios, `vercel.json` is optional. Vercel's defaults work great out of the box.
+</Tip>
+
+### Custom 404 Page
+
+Create a `404.html` file in your root directory:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found</title>
+</head>
+<body>
+  <h1>404 - Page Not Found</h1>
+  <p>The page you're looking for doesn't exist.</p>
+  <a href="/">Go Home</a>
+</body>
+</html>
+```
+
+Vercel automatically serves this for 404 errors.
+
+### Performance Optimization
+
+Vercel automatically:
+- Compresses assets with Brotli/Gzip
+- Serves from global edge network
+- Caches static assets aggressively
+- Optimizes images (if using Vercel Image Optimization)
+
+<Note>
+  No configuration needed. Vercel optimizes your static site automatically.
+</Note>
+
+## Preview Deployments
+
+Every Git push creates a **unique preview deployment**:
+
+- **Branch deployments**: Every branch gets its own URL
+- **Commit deployments**: Every commit gets a unique preview
+- **Pull request comments**: Vercel comments on PRs with preview links
+
+<Tip>
+  Share preview URLs with clients or collaborators to get feedback before merging to production.
+</Tip>
+
+## Vercel Analytics (Optional)
+
+Enable built-in analytics:
+
+<Steps>
+  <Step title="Enable Analytics">
+    1. Go to project **Analytics** tab
+    2. Click **Enable Analytics**
+    3. Analytics starts tracking immediately (no code changes needed)
+  </Step>
+
+  <Step title="View Metrics">
+    Track:
+    - Page views and visitors
+    - Real Experience Score (performance metrics)
+    - Top pages
+    - Geographic distribution
+  </Step>
+</Steps>
+
+<Note>
+  Vercel Analytics is privacy-friendly and doesn't use cookies or track personal data.
+</Note>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Build failed">
+    For static sites, builds rarely fail. If they do:
+    - Check deployment logs in **Deployments** tab
+    - Ensure `index.html` exists at root level
+    - Verify no build commands are configured (should be empty)
+  </Accordion>
+
+  <Accordion title="Assets not loading">
+    - Use relative paths: `./css/style.css` instead of `/css/style.css`
+    - Check file names match exactly (case-sensitive)
+    - Verify files are committed to Git (for Git deployments)
+  </Accordion>
+
+  <Accordion title="Custom domain not working">
+    - Verify DNS records are correct (check Vercel's instructions)
+    - Wait up to 48 hours for DNS propagation
+    - Use `dig` or `nslookup` to verify DNS records
+    - Check domain status in **Settings** > **Domains**
+  </Accordion>
+
+  <Accordion title="Deployment stuck">
+    - Check Vercel status page: [vercel-status.com](https://www.vercel-status.com)
+    - Cancel and retry deployment
+    - Contact Vercel support if issue persists
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<Tip>
+  **Preview Deployments**: Always review preview deployments before merging to ensure changes look correct.
+</Tip>
+
+<Tip>
+  **Instant Rollback**: If something breaks, use the **Deployments** tab to instantly promote a previous deployment to production.
+</Tip>
+
+<Tip>
+  **Branch Protection**: Use Git branch protection rules to require preview deployments to succeed before merging.
+</Tip>
+
+<Tip>
+  **Vercel CLI**: Install the CLI for quick local testing with `vercel dev` before deploying.
+</Tip>
+
+<Note>
+  Vercel's free tier is generous for personal projects. You get unlimited deployments, 100GB bandwidth/month, and automatic SSL.
+</Note>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Edge Functions"
+    icon="bolt"
+  >
+    Add serverless functions that run at the edge for dynamic functionality.
+  </Card>
+
+  <Card
+    title="Image Optimization"
+    icon="image"
+  >
+    Use Vercel's Image Optimization API to automatically optimize portfolio images.
+  </Card>
+  
+  <Card
+    title="Web Analytics"
+    icon="chart-line"
+  >
+    Enable Vercel Analytics to track performance and visitor metrics.
+  </Card>
+
+  <Card
+    title="Speed Insights"
+    icon="gauge-high"
+  >
+    Monitor real user performance metrics with Vercel Speed Insights.
+  </Card>
+</CardGroup>

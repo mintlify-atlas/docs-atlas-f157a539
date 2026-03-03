@@ -1,0 +1,364 @@
+---
+title: 'Resume Section Component'
+description: 'Skills grid, work experience timeline, and education timeline components'
+---
+
+# Resume Section Component
+
+The resume section displays technical skills in a grid layout and presents work experience and education in vertical timeline formats.
+
+## Section Structure
+
+```html
+<section id="resume">
+    <div class="py-4 my-4">
+        <h1 class="fw-bold mt-5">Resume</h1>
+    </div>
+    
+    <!-- Skills Section -->
+    <div class="py-4 my-4">
+        <h2 class="fw-bold pb-4">Habilidades Técnicas</h2>
+        <div class="skills-list">
+            <!-- Skills grid items -->
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experiencia-laboral" class="resume-section">
+    <div class="container">
+        <div class="section-title">
+            <div class="py-4 my-4"></div>
+            <h2 class="fw-bold pb-4">Experiencia Laboral</h2>
+        </div>
+        <hr class="mid-break my-2">
+        <div class="timeline">
+            <!-- Timeline items -->
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="resume-section">
+    <div class="container">
+        <div class="section-title">
+            <div class="py-4 my-4"></div>
+            <h2 class="fw-bold pb-4">Educación</h2>
+        </div>
+        <hr class="mid-break my-2">
+        <div class="timeline">
+            <!-- Timeline items -->
+        </div>
+    </div>
+</section>
+```
+
+## Skills Grid Layout
+
+The skills section uses CSS Grid to create a responsive layout of skill badges.
+
+### HTML Structure
+
+```html
+<div class="py-4 my-4">
+    <h2 class="fw-bold pb-4">Habilidades Técnicas</h2>
+
+    <div class="skills-list">
+        <h4><i class="ti ti-brand-nodejs"></i> Node.js</h4>
+        <h4><i class="ti ti-brand-javascript"></i> JavaScript</h4>
+        <h4><i class="ti ti-brand-php"></i> PHP</h4>
+        <h4><i class="ti ti-brand-mysql"></i> MySQL</h4>
+        <h4><i class="ti ti-brand-html5"></i> HTML & CSS</h4>
+        <h4><i class="ti ti-brand-c-sharp"></i> C#</h4>
+        <h4><i class="ti ti-brand-git"></i> Git</h4>
+    </div>
+</div>
+```
+
+### CSS Grid Styling
+
+```css
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.4rem 2rem;
+  margin: 2.5rem 0;
+}
+
+.skills-list h4 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  padding: 16px 20px;
+  background: rgba(74, 144, 226, 0.07);
+  border: 1px solid rgba(74, 144, 226, 0.15);
+  border-radius: 12px;
+  color: var(--body-text-color);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.skills-list h4:hover {
+  background: rgba(74, 144, 226, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.skills-list .ti {
+  font-size: 2rem;
+  color: var(--accent-color);
+}
+```
+
+### Responsive Grid
+
+```css
+@media (max-width: 576px) {
+  .skills-list { 
+    grid-template-columns: 1fr; 
+  }
+}
+```
+
+## Work Experience Timeline
+
+The work experience section uses a timeline layout to display job history.
+
+### Timeline HTML
+
+```html
+<section id="experiencia-laboral" class="resume-section">
+    <div class="container">
+        <div class="section-title">
+            <div class="py-4 my-4"></div>
+            <h2 class="fw-bold pb-4">Experiencia Laboral</h2>
+        </div>
+    
+        <hr class="mid-break my-2">
+        
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <div class="data-info">
+                        <p class="meta-date">
+                            Ene 2022 - Oct 2025 
+                            <span class="divider">•</span> 
+                            <span class="company">Vita Support SAS</span>
+                        </p>
+                        <h3 class="info-title">Técnico de Software Junior</h3>
+                        <p>
+                            Liderazgo de área por casi 11 meses, gestionando proyectos 
+                            y coordinando equipo. Desarrollo de sistemas a medida 
+                            garantizando seguridad, escalabilidad y cumplimiento de plazos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <div class="data-info">
+                        <p class="meta-date">
+                            Ene 2022 - Jul 2022 
+                            <span class="divider">•</span> 
+                            <span class="company">Aprendiz SENA – FUNDEM PSP</span>
+                        </p>
+                        <h3 class="info-title">Desarrollador de Software</h3>
+                        <p>
+                            Pruebas de calidad y validación de desarrollos. 
+                            Desarrollo de una plataforma educativa desde cero.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+```
+
+## Education Timeline
+
+The education section uses the same timeline structure as work experience.
+
+### Education HTML
+
+```html
+<section id="education" class="resume-section">
+    <div class="container">
+        <div class="section-title">
+            <div class="py-4 my-4"></div>
+            <h2 class="fw-bold pb-4">Educación</h2>
+        </div>
+    
+        <hr class="mid-break my-2">
+        
+        <div class="timeline">
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <div class="data-info">
+                        <p class="meta-date">
+                            En curso 
+                            <span class="divider">•</span> 
+                            <span class="company">Corporación Universitaria Iberoamericana</span>
+                        </p>
+                        <h3 class="info-title">Ingeniería de Software</h3>
+                        <p>
+                            Formación universitaria en ingeniería de software con enfoque 
+                            en arquitectura de sistemas, desarrollo de aplicaciones y 
+                            gestión de proyectos tecnológicos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <div class="data-info">
+                        <p class="meta-date">
+                            2020 - 2021 
+                            <span class="divider">•</span> 
+                            <span class="company">SENA</span>
+                        </p>
+                        <h3 class="info-title">Técnico en Programación de Software</h3>
+                        <p>
+                            Formación técnica especializada en desarrollo de software, 
+                            algoritmos, estructuras de datos y buenas prácticas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <div class="data-info">
+                        <p class="meta-date">
+                            2018 - 2019 
+                            <span class="divider">•</span> 
+                            <span class="company">SENA</span>
+                        </p>
+                        <h3 class="info-title">Técnico en Asistencia Administrativa</h3>
+                        <p>
+                            Formación en administración y gestión de procesos, 
+                            complementando las habilidades técnicas con capacidades 
+                            administrativas y organizativas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+```
+
+## Timeline Item Structure
+
+<Accordion title="Timeline Item Components">
+  Each timeline item contains:
+  
+  - **`.timeline-item`** - Main container with AOS animation
+  - **`.timeline-content`** - Content wrapper
+  - **`.data-info`** - Information container
+  - **`.meta-date`** - Date range and company/institution
+  - **`.info-title`** - Job title or degree (h3)
+  - **Description paragraph** - Job responsibilities or education details
+
+  ```html
+  <div class="timeline-item" data-aos="fade-up">
+      <div class="timeline-content">
+          <div class="data-info">
+              <p class="meta-date">
+                  Date Range <span class="divider">•</span> 
+                  <span class="company">Organization</span>
+              </p>
+              <h3 class="info-title">Position/Degree Title</h3>
+              <p>Description of responsibilities or curriculum.</p>
+          </div>
+      </div>
+  </div>
+  ```
+</Accordion>
+
+## AOS Animation Integration
+
+Timeline items use AOS (Animate On Scroll) library for fade-up animations.
+
+### AOS Initialization
+
+```html
+<!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  AOS.init({
+    once: true,
+    duration: 600,
+    easing: 'ease-out-quart'
+  });
+</script>
+```
+
+### Animation Attributes
+
+<ParamField path="data-aos" type="attribute" default="fade-up">
+  Animation type applied when element enters viewport
+</ParamField>
+
+<ParamField path="once" type="boolean" default="true">
+  Animation triggers only once (doesn't repeat on scroll up)
+</ParamField>
+
+<ParamField path="duration" type="number" default="600">
+  Animation duration in milliseconds
+</ParamField>
+
+<ParamField path="easing" type="string" default="ease-out-quart">
+  Animation easing function
+</ParamField>
+
+## Skills Grid Parameters
+
+<ParamField path="grid-template-columns" type="css">
+  `repeat(auto-fit, minmax(210px, 1fr))` - Auto-fitting columns with minimum 210px width
+</ParamField>
+
+<ParamField path="gap" type="css" default="1.4rem 2rem">
+  Grid gap: 1.4rem vertical, 2rem horizontal
+</ParamField>
+
+<ParamField path="padding" type="css" default="16px 20px">
+  Internal padding for skill badges
+</ParamField>
+
+<ParamField path="border-radius" type="css" default="12px">
+  Rounded corners for skill badges
+</ParamField>
+
+## Hover Effects
+
+### Skill Badge Hover
+
+```css
+.skills-list h4:hover {
+  background: rgba(74, 144, 226, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+```
+
+- Background opacity increases from 0.07 to 0.15
+- Element lifts 4px upward
+- Box shadow appears for depth
+
+## Key Features
+
+- **Responsive grid** for skills using CSS Grid auto-fit
+- **Timeline layout** for chronological experience/education
+- **Scroll animations** with AOS library
+- **Icon integration** with Tabler Icons for tech stacks
+- **Hover interactions** on skill badges
+- **Semantic HTML** with proper heading hierarchy
+- **Consistent spacing** using Bootstrap utilities

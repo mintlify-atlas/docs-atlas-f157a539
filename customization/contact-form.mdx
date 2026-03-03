@@ -1,0 +1,455 @@
+---
+title: "Contact Form Configuration"
+description: "Set up WhatsApp integration, update contact information, and customize social media links in your portfolio."
+---
+
+The contact section includes a form that sends messages via WhatsApp, contact information display, and social media links. This guide shows you how to configure everything using the actual code from the template.
+
+## Contact Section Overview
+
+The contact section is located in `index.html` at **lines 404-498** and includes:
+
+- Mini contact form with WhatsApp integration
+- Contact information display (phone, email, location)
+- Social media links
+
+## WhatsApp Integration Setup
+
+The contact form sends messages directly to WhatsApp using JavaScript. The handler code is in `index.html` at **lines 554-583**.
+
+### WhatsApp Handler Code
+
+```javascript index.html
+// Manejo del mini formulario: solo WhatsApp
+(function () {
+  const form = document.getElementById('miniContactForm');
+  if (!form) return;
+
+  const toWhatsapp = '573229520608'; // Número destino sin signos, con código país
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+
+    if (!name || !email || !message) {
+      alert('Por favor completa nombre, email y mensaje.');
+      return;
+    }
+
+    // Construir mensaje base
+    const msg = `Hola Buen DIa, soy ${name}.\n mi correo es: ${email}\n y quiero conversar con tigo de:${message}`;
+
+    // Enviar WhatsApp
+    const waUrl = `https://wa.me/${toWhatsapp}?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, '_blank');
+
+    // Resetear formulario
+    form.reset();
+  });
+})();
+```
+
+### Configuring Your WhatsApp Number
+
+<Steps>
+  <Step title="Find Your WhatsApp Number">
+    Get your WhatsApp number including country code (e.g., USA: 1, Colombia: 57, UK: 44).
+  </Step>
+  
+  <Step title="Format the Number">
+    Remove all spaces, dashes, and special characters. Include country code.
+    
+    **Examples:**
+    - Colombia: `573229520608`
+    - USA: `15551234567`
+    - UK: `447911123456`
+  </Step>
+  
+  <Step title="Update the Code">
+    Replace the number in line **559**:
+    
+    ```javascript index.html
+    const toWhatsapp = '15551234567'; // Your number here
+    ```
+  </Step>
+</Steps>
+
+<Warning>
+  The WhatsApp number must include the country code and have NO spaces, dashes, parentheses, or plus signs.
+</Warning>
+
+### Customizing the Message Template
+
+The message template is at **line 574**. You can customize it:
+
+```javascript index.html
+// Default template
+const msg = `Hola Buen DIa, soy ${name}.\n mi correo es: ${email}\n y quiero conversar con tigo de:${message}`;
+
+// Professional English template
+const msg = `Hello! I'm ${name}.\nEmail: ${email}\nMessage: ${message}`;
+
+// Detailed template with subject
+const msg = `New Contact Form Submission\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+// Simple template
+const msg = `${name} (${email}) says: ${message}`;
+```
+
+<Tip>
+  Use `\n` for line breaks in the WhatsApp message. Use `\n\n` for paragraph spacing.
+</Tip>
+
+## Contact Form HTML
+
+The form structure is at **lines 416-438**:
+
+```html index.html
+<div class="py-4 my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <form id="miniContactForm" class="row g-3">
+        <div class="col-md-6">
+          <label for="contactName" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="contactName" name="name" placeholder="Tu nombre" required>
+        </div>
+        <div class="col-md-6">
+          <label for="contactEmail" class="form-label">Email</label>
+          <input type="email" class="form-control" id="contactEmail" name="email" placeholder="tucorreo@dominio.com" required>
+        </div>
+        <div class="col-12">
+          <label for="contactMessage" class="form-label">Mensaje</label>
+          <textarea class="form-control" id="contactMessage" name="message" rows="4" placeholder="Cuéntame brevemente tu idea" required></textarea>
+        </div>
+        <div class="col-12 d-flex gap-2">
+          <button type="submit" class="btn btn-primary"><i class="ti ti-send"></i> Enviar</button>
+          <button type="reset" class="btn btn-outline-secondary"><i class="ti ti-rotate"></i> Limpiar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+```
+
+### Customizing Form Fields
+
+<CodeGroup>
+
+```html Add Phone Field
+<div class="col-md-6">
+  <label for="contactPhone" class="form-label">Phone</label>
+  <input type="tel" class="form-control" id="contactPhone" name="phone" placeholder="Your phone number">
+</div>
+```
+
+```html Add Subject Field
+<div class="col-12">
+  <label for="contactSubject" class="form-label">Subject</label>
+  <input type="text" class="form-control" id="contactSubject" name="subject" placeholder="What is this about?" required>
+</div>
+```
+
+```html Add Company Field
+<div class="col-md-6">
+  <label for="contactCompany" class="form-label">Company</label>
+  <input type="text" class="form-control" id="contactCompany" name="company" placeholder="Your company name">
+</div>
+```
+
+</CodeGroup>
+
+### Adding Custom Fields to WhatsApp Message
+
+If you add new form fields, update the JavaScript to include them:
+
+```javascript index.html
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const phone = document.getElementById('contactPhone').value.trim(); // New field
+  const subject = document.getElementById('contactSubject').value.trim(); // New field
+  const message = document.getElementById('contactMessage').value.trim();
+
+  // Updated message template
+  const msg = `New Contact Form\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nSubject: ${subject}\n\nMessage:\n${message}`;
+
+  const waUrl = `https://wa.me/${toWhatsapp}?text=${encodeURIComponent(msg)}`;
+  window.open(waUrl, '_blank');
+
+  form.reset();
+});
+```
+
+## Contact Information Display
+
+The contact information cards are at **lines 444-463**:
+
+```html index.html
+<div class="py-4 my-4">
+  <div class="row justify-content-around text-center">
+
+    <div class="col-md-4 contact-list mb-3">
+      <i class="ti ti-phone"></i>
+      <p class="contact-paragraph mt-2">+57 322 952 0608</p>
+    </div>
+
+    <div class="col-md-4 contact-list mb-3">
+      <i class="ti ti-mail"></i>
+      <p class="contact-paragraph mt-2">zvzgmzq@gmail.com</p>
+    </div>
+
+    <div class="col-md-4 contact-list mb-3">
+      <i class="ti ti-map-pin"></i>
+      <p class="contact-paragraph mt-2">Bogotá, Colombia</p>
+    </div>
+
+  </div>
+</div>
+```
+
+<Steps>
+  <Step title="Update Phone Number">
+    Replace the phone number text with your own number.
+  </Step>
+  
+  <Step title="Update Email Address">
+    Change the email address to your contact email.
+  </Step>
+  
+  <Step title="Update Location">
+    Modify the location text to your city and country.
+  </Step>
+  
+  <Step title="Change Icons (Optional)">
+    You can use different Tabler Icons like `ti ti-device-mobile` for mobile or `ti ti-mail-forward` for email.
+  </Step>
+</Steps>
+
+### Adding More Contact Methods
+
+Add additional contact information:
+
+```html index.html
+<div class="col-md-3 contact-list mb-3">
+  <i class="ti ti-brand-telegram"></i>
+  <p class="contact-paragraph mt-2">@yourusername</p>
+</div>
+
+<div class="col-md-3 contact-list mb-3">
+  <i class="ti ti-world"></i>
+  <p class="contact-paragraph mt-2">yourwebsite.com</p>
+</div>
+```
+
+## Social Media Links
+
+Social media buttons are at **lines 468-496**:
+
+```html index.html
+<div class="py-4 my-4">
+  <h2 class="fw-bold pb-4 text-center">Redes Sociales</h2>
+
+  <div class="row justify-content-around text-center">
+    <div class="col-md-3 mb-3">
+      <i class="ti ti-brand-github"></i>
+      <a href="https://github.com/GmzQzvZ" target="_blank" rel="noopener noreferrer"
+         class="btn btn-outline-primary btn-lg w-100">GitHub</a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <i class="ti ti-brand-linkedin"></i>
+      <a href="https://www.linkedin.com/in/juan-sebastian-gomez-qui%C3%B1ones-439a502b8/"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn-outline-primary btn-lg w-100">LinkedIn</a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <i class="ti ti-brand-whatsapp"></i>
+      <a href="https://wa.link/oqpuez" target="_blank" rel="noopener noreferrer"
+         class="btn btn-outline-primary btn-lg w-100">WhatsApp</a>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <i class="ti ti-mail"></i>
+      <a href="mailto:zvzgmzq@gmail.com" class="btn btn-outline-primary btn-lg w-100">Email</a>
+    </div>
+  </div>
+</div>
+```
+
+### Updating Social Media Links
+
+<Steps>
+  <Step title="Replace GitHub URL">
+    Update the `href` with your GitHub profile URL.
+  </Step>
+  
+  <Step title="Replace LinkedIn URL">
+    Update with your LinkedIn profile URL.
+  </Step>
+  
+  <Step title="Replace WhatsApp Link">
+    Use `https://wa.me/YOURNUMBER` or create a WhatsApp link at [wa.link](https://wa.link/).
+  </Step>
+  
+  <Step title="Replace Email">
+    Update the `mailto:` link with your email address.
+  </Step>
+</Steps>
+
+### Adding Additional Social Networks
+
+Add more social media platforms:
+
+<CodeGroup>
+
+```html Twitter/X
+<div class="col-md-3 mb-3">
+  <i class="ti ti-brand-x"></i>
+  <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer"
+     class="btn btn-outline-primary btn-lg w-100">Twitter</a>
+</div>
+```
+
+```html Instagram
+<div class="col-md-3 mb-3">
+  <i class="ti ti-brand-instagram"></i>
+  <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer"
+     class="btn btn-outline-primary btn-lg w-100">Instagram</a>
+</div>
+```
+
+```html YouTube
+<div class="col-md-3 mb-3">
+  <i class="ti ti-brand-youtube"></i>
+  <a href="https://youtube.com/@yourchannel" target="_blank" rel="noopener noreferrer"
+     class="btn btn-outline-primary btn-lg w-100">YouTube</a>
+</div>
+```
+
+```html Discord
+<div class="col-md-3 mb-3">
+  <i class="ti ti-brand-discord"></i>
+  <a href="https://discord.gg/yourinvite" target="_blank" rel="noopener noreferrer"
+     class="btn btn-outline-primary btn-lg w-100">Discord</a>
+</div>
+```
+
+```html Portfolio/Website
+<div class="col-md-3 mb-3">
+  <i class="ti ti-world"></i>
+  <a href="https://yourwebsite.com" target="_blank" rel="noopener noreferrer"
+     class="btn btn-outline-primary btn-lg w-100">Website</a>
+</div>
+```
+
+</CodeGroup>
+
+## Sidebar Social Icons
+
+Social icons also appear in the sidebar at **lines 509-522**:
+
+```html index.html
+<div class="social-icon my-4">
+    <a href="https://github.com/GmzQzvZ" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+    <i class="ti ti-brand-github"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/juan-sebastian-gomez-qui%C3%B1ones-439a502b8/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <i class="ti ti-brand-linkedin"></i>
+    </a>
+    <a href="https://wa.link/oqpuez" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <i class="ti ti-brand-whatsapp"></i>
+    </a>
+    <a href="mailto:zvzgmzq@gmail.com" class="social-link" aria-label="Email">
+        <i class="ti ti-mail"></i>
+    </a>
+</div>
+```
+
+<Warning>
+  Make sure to update social media links in BOTH places: the contact section AND the sidebar for consistency.
+</Warning>
+
+## Contact Section Styling
+
+The contact cards styling is in `style.css` at **lines 414-432**:
+
+```css style.css
+.contact-list {
+  padding: 2rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.09);
+  transition: all 0.35s ease;
+}
+
+.contact-list:hover {
+  transform: translateY(-8px);
+  background: rgba(74, 144, 226, 0.09);
+  border-color: var(--accent-color);
+}
+
+.contact-list i {
+  font-size: 2.8rem;
+  color: var(--accent-color);
+  margin-bottom: 1.2rem;
+}
+```
+
+## Testing WhatsApp Integration
+
+<Steps>
+  <Step title="Update WhatsApp Number">
+    Ensure your WhatsApp number is correctly formatted in the JavaScript code.
+  </Step>
+  
+  <Step title="Fill Out Test Form">
+    Open your portfolio in a browser and fill out the contact form with test data.
+  </Step>
+  
+  <Step title="Submit Form">
+    Click the submit button. A new tab should open with WhatsApp Web.
+  </Step>
+  
+  <Step title="Verify Message">
+    Check that the pre-filled message contains all your form data correctly formatted.
+  </Step>
+  
+  <Step title="Send Test Message">
+    Send the message to confirm it arrives at your WhatsApp account.
+  </Step>
+</Steps>
+
+<Tip>
+  Test the WhatsApp integration on both desktop (WhatsApp Web) and mobile (WhatsApp app) to ensure it works correctly on all devices.
+</Tip>
+
+## Alternative: Email Integration
+
+If you prefer email instead of WhatsApp, you can use a `mailto:` link:
+
+```javascript index.html
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const message = document.getElementById('contactMessage').value.trim();
+
+  const subject = encodeURIComponent(`Contact from ${name}`);
+  const body = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+
+  window.location.href = `mailto:your@email.com?subject=${subject}&body=${body}`;
+  
+  form.reset();
+});
+```
+
+<Warning>
+  The `mailto:` method requires the user to have an email client configured. WhatsApp integration generally provides a better user experience.
+</Warning>

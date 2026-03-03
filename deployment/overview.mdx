@@ -1,0 +1,123 @@
+---
+title: 'Deployment Overview'
+description: 'Learn how to deploy your portfolio template to the web'
+---
+
+## What is Deployment?
+
+Deployment means taking your portfolio files (HTML, CSS, JavaScript) and making them accessible on the internet. Since this is a **static site** (no server-side code or database), deployment is straightforward and often free.
+
+## Prerequisites
+
+Before deploying, ensure you have:
+
+<Check>
+  Your complete portfolio template folder with all files:
+  - `index.html` (main page)
+  - CSS files (stylesheets)
+  - JavaScript files (interactivity)
+  - Images and assets
+  - Any other custom files you've added
+</Check>
+
+<Check>
+  All customizations completed (content, colors, images, etc.)
+</Check>
+
+<Check>
+  Tested locally in your browser to ensure everything works
+</Check>
+
+## Choosing a Hosting Platform
+
+All platforms below offer:
+- **Free hosting** for static sites
+- **HTTPS/SSL** included
+- **Custom domain** support
+- **Fast global CDN** delivery
+
+The main differences are in the deployment workflow and additional features.
+
+## Deployment Options
+
+<CardGroup cols={3}>
+  <Card
+    title="GitHub Pages"
+    icon="github"
+    href="/deployment/github-pages"
+  >
+    Perfect if you're already using GitHub. Free hosting with automatic SSL.
+  </Card>
+
+  <Card
+    title="Netlify"
+    icon="cloud"
+    href="/deployment/netlify"
+  >
+    Easiest drag-and-drop deployment. Instant previews and great developer experience.
+  </Card>
+
+  <Card
+    title="Vercel"
+    icon="bolt"
+    href="/deployment/vercel"
+  >
+    Lightning-fast deployments with excellent performance optimization.
+  </Card>
+</CardGroup>
+
+## What Happens During Deployment?
+
+When you deploy a static site:
+
+1. **Upload**: Your files are uploaded to the hosting platform's servers
+2. **Distribution**: Files are distributed across a global CDN (Content Delivery Network)
+3. **URL Assignment**: You receive a public URL to access your portfolio
+4. **SSL Certificate**: Automatic HTTPS encryption is configured
+5. **Live**: Your portfolio is now accessible worldwide
+
+<Tip>
+  Most platforms offer **instant deployments** - your site goes live in seconds, not minutes.
+</Tip>
+
+## Quick Comparison
+
+| Platform | Best For | Deployment Method | Build Time |
+|----------|----------|-------------------|------------|
+| GitHub Pages | GitHub users | Git push or web upload | ~1-2 min |
+| Netlify | Drag-and-drop simplicity | Drag folder or Git | ~10-30 sec |
+| Vercel | Performance optimization | Git import or CLI | ~10-20 sec |
+
+## Next Steps
+
+Choose your preferred platform and follow the detailed deployment guide:
+
+<CardGroup cols={1}>
+  <Card
+    title="Deploy to GitHub Pages"
+    icon="arrow-right"
+    href="/deployment/github-pages"
+  >
+    Step-by-step guide for GitHub Pages deployment
+  </Card>
+
+  <Card
+    title="Deploy to Netlify"
+    icon="arrow-right"
+    href="/deployment/netlify"
+  >
+    Step-by-step guide for Netlify deployment
+  </Card>
+
+  <Card
+    title="Deploy to Vercel"
+    icon="arrow-right"
+    href="/deployment/vercel"
+  >
+    Step-by-step guide for Vercel deployment
+  </Card>
+</CardGroup>
+
+<Note>
+  You can deploy to multiple platforms simultaneously if you want to test different hosting options.
+</Note>

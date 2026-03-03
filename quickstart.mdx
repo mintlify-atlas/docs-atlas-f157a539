@@ -1,80 +1,254 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: Quick Start
+description: Get your portfolio up and running in minutes with this step-by-step guide
 ---
 
-## Get started in three steps
+# Quick Start Guide
 
-Get your documentation site running locally and make your first customization.
+Get your portfolio live in just a few minutes. This guide will walk you through the essential steps to customize the template with your information.
 
-### Step 1: Set up your local environment
-
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
+<Steps>
+  <Step title="Download the Template">
+    Download or clone the portfolio template to your local machine:
     
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
+    ```bash
+    # Clone via Git
+    git clone <repository-url>
     
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+    # Or download as ZIP and extract
+    ```
+  </Step>
 
-### Step 2: Deploy your changes
-
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
+  <Step title="Open in Browser">
+    Navigate to the template folder and open `index.html` in your web browser:
     
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+    ```bash
+    cd template/
+    open index.html  # macOS
+    start index.html # Windows
+    xdg-open index.html # Linux
+    ```
+    
+    You should see the template with demo content.
+  </Step>
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+  <Step title="Customize Your Information">
+    Open `index.html` in your favorite text editor and start personalizing!
+  </Step>
+</Steps>
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
+## Essential Customizations
 
-### Step 3: Go live
+### 1. Update Your Profile
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+Replace the profile information in the sidebar (appears twice - desktop sidebar and mobile offcanvas):
 
-## Next steps
+<CodeGroup>
+```html Desktop Sidebar (lines 502-527)
+<div class="hero-sidebar">
+    <header class="hero">
+        <div class="hero-container text-center my-4 pt-3">
 
-Now that you have your docs running, explore these key features:
+            <img src="images/sin.png" class="hero-img mb-4 rounded-circle" 
+                 alt="Sebastián Gómez" width="160" height="160">
+            <h2 class="fw-bold mt-3">Sebastián Gómez</h2>
+            <p>Desarrollador Web App | Apasionado por la tecnología</p>
+            
+            <div class="social-icon my-4">
+                <a href="https://github.com/GmzQzvZ" class="social-link" 
+                   target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <i class="ti ti-brand-github"></i>
+                </a>
+                <!-- More social links -->
+            </div>
+        </div>
+    </header>
+</div>
+```
 
-<CardGroup cols={2}>
+```html Mobile Offcanvas (lines 69-96)
+<div class="offcanvas-body">
+    <header class="hero position-fixed">
+        <div class="container hero-container text-center align-content-between">
+            <div>
+                <img src="images/sin.png" class="hero-img mb-4 rounded-circle" 
+                     alt="Sebastián Gómez" width="140" height="140" loading="lazy">
 
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
+                <h2 class="fw-bold">Sebastián Gómez</h2>
+                <p>Desarrollador Web App | Apasionado por la tecnología</p>
 
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
+                <div class="social-icon my-4">
+                    <!-- Social links -->
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+```
+</CodeGroup>
 
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
+<Tip>
+**What to update:**
+- Replace `images/sin.png` with your profile photo path
+- Update the name in `<h2>` tags
+- Change the tagline in `<p>` tags
+- Update social media links with your profiles
+</Tip>
 
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
+### 2. Update Hero Section
 
-</CardGroup>
+Customize your main introduction (`index.html:144-158`):
+
+```html
+<section id="home" class="mt-0">
+    <div class=" py-lg-4 my-lg-4 text-center">
+        <h1 class="fw-bold">Juan Sebastián Gómez Quiñones</h1>
+        <div class="col-lg-10 mx-auto">
+            <p class="lead-paragraph mb-4">Desarrollador de Software Junior | Estudiante de Ingeniería de Software</p>
+        </div>
+        <p class="lead-paragraph mb-4">Desarrollador Web App apasionado por la tecnología, automatización e innovación digital. Creo soluciones prácticas con Node.js, JavaScript y WhatsApp Business API.</p>
+        <div class=" gap-2 d-sm-flex justify-content-sm-center">
+            <a href="#contact" class="btn btn-primary btn-lg mt-3">Contactarme</a>
+        </div>
+    </div>
+</section>
+```
 
 <Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
+Update the `<h1>` with your full name and the paragraphs with your professional title and bio.
 </Note>
+
+### 3. Update Page Title and Meta Tags
+
+Change the browser tab title and SEO information (`index.html:5-27`):
+
+```html
+<head>
+    <title>Sebastián Gómez - Desarrollador Web App</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="description" content="Portafolio de Juan Sebastián Gómez Quiñones. Desarrollador Web App. Proyectos con Node.js, JavaScript, PHP, MySQL y automatización con APIs.">
+    <meta name="author" content="Sebastián Gómez">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sebastián Gómez - Desarrollador Web App">
+    <meta property="og:description" content="Portafolio, experiencia y proyectos. Desarrollo web, automatización y soluciones a medida.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="images/sin.png">
+</head>
+```
+
+### 4. Add Your Profile Image
+
+Replace the profile image:
+
+<Steps>
+  <Step title="Add your photo">
+    Place your profile photo in the `images/` folder (e.g., `images/profile.jpg`)
+  </Step>
+  
+  <Step title="Update image paths">
+    Search for `images/sin.png` in `index.html` and replace with your image path
+  </Step>
+  
+  <Step title="Optimize the image">
+    Recommended: Square image, at least 300x300px, under 200KB for fast loading
+  </Step>
+</Steps>
+
+### 5. Update Contact Information
+
+Update your contact details in the Personal Info section (`index.html:180-186`):
+
+```html
+<ul class="list-unstyled">
+    <li><b>Edad:</b> 25 </li>
+    <li><b>Ubicación:</b> Bogotá, Colombia</li>
+    <li><b>E-mail:</b> zvzgmzq@gmail.com</li>
+    <li><b>Teléfono:</b> +57 322 952 0608</li>
+</ul>
+```
+
+And in the contact section (`index.html:444-460`):
+
+```html
+<div class="col-md-4 contact-list mb-3">
+    <i class="ti ti-phone"></i>
+    <p class="contact-paragraph mt-2">+57 322 952 0608</p>
+</div>
+
+<div class="col-md-4 contact-list mb-3">
+    <i class="ti ti-mail"></i>
+    <p class="contact-paragraph mt-2">zvzgmzq@gmail.com</p>
+</div>
+
+<div class="col-md-4 contact-list mb-3">
+    <i class="ti ti-map-pin"></i>
+    <p class="contact-paragraph mt-2">Bogotá, Colombia</p>
+</div>
+```
+
+### 6. Configure WhatsApp Contact Form
+
+The template includes a contact form that sends messages directly to WhatsApp. Update the phone number (`index.html:559`):
+
+```javascript
+const toWhatsapp = '573229520608'; // Your WhatsApp number (country code + number, no + or spaces)
+```
+
+<Warning>
+Make sure to include your country code without the `+` symbol. For example: `573229520608` for Colombia.
+</Warning>
+
+## Quick Customization Checklist
+
+Use this checklist to ensure you've updated all the essential information:
+
+- [ ] Profile image in sidebar and offcanvas
+- [ ] Your name in hero section
+- [ ] Professional title and bio
+- [ ] Page title and meta descriptions
+- [ ] Social media links (GitHub, LinkedIn, WhatsApp, Email)
+- [ ] Contact information (phone, email, location)
+- [ ] WhatsApp number in contact form script
+- [ ] About section bio
+- [ ] Favicon in `images/favicon/` folder
+
+## Preview Your Changes
+
+After making changes:
+
+1. **Save** `index.html`
+2. **Refresh** your browser (or use `Cmd/Ctrl + Shift + R` for hard refresh)
+3. **Test** all links and the contact form
+4. **Check** mobile responsiveness using browser DevTools
+
+<Tip>
+Use your browser's DevTools (F12) to toggle device toolbar and preview how your portfolio looks on different screen sizes.
+</Tip>
+
+## Next Steps
+
+Once you've completed these basic customizations:
+
+<CardGroup cols={2}>
+  <Card title="Add Your Projects" icon="briefcase" href="/customization#portfolio-section">
+    Replace demo projects with your actual work
+  </Card>
+  <Card title="Customize Colors" icon="palette" href="/customization#styling">
+    Change the color scheme to match your brand
+  </Card>
+  <Card title="Add Experience" icon="timeline" href="/customization#resume-section">
+    Update work history and education
+  </Card>
+  <Card title="Deploy Online" icon="cloud-upload" href="/deployment">
+    Publish your portfolio to the web
+  </Card>
+</CardGroup>
+
+For more detailed customization options, check out the [Installation Guide](/installation) for the complete file structure breakdown.

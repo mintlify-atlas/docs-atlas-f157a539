@@ -1,0 +1,255 @@
+---
+title: 'Hero Section Component'
+description: 'Sidebar profile component with offcanvas mobile menu, profile image, and social media icons'
+---
+
+# Hero Section Component
+
+The hero section displays as a fixed sidebar on desktop and an offcanvas menu on mobile devices. It contains the profile image, name, description, and social media links.
+
+## Desktop Sidebar Structure
+
+The desktop version uses a fixed sidebar positioned on the right side of the screen.
+
+### HTML Structure
+
+```html
+<div class="hero-sidebar">
+    <header class="hero">
+        <div class="hero-container text-center my-4 pt-3">
+
+            <img src="images/sin.png" class="hero-img mb-4 rounded-circle" 
+                 alt="Sebastián Gómez" width="160" height="160">
+            <h2 class="fw-bold mt-3">Sebastián Gómez</h2>
+            <p>Desarrollador Web App | Apasionado por la tecnología</p>
+            
+            <div class="social-icon my-4">
+                <a href="https://github.com/GmzQzvZ" class="social-link" 
+                   target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <i class="ti ti-brand-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/juan-sebastian-gomez-qui%C3%B1ones-439a502b8/" 
+                   class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i class="ti ti-brand-linkedin"></i>
+                </a>
+                <a href="https://wa.link/oqpuez" class="social-link" 
+                   target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <i class="ti ti-brand-whatsapp"></i>
+                </a>
+                <a href="mailto:zvzgmzq@gmail.com" class="social-link" aria-label="Email">
+                    <i class="ti ti-mail"></i>
+                </a>
+            </div>
+            
+            <p class="text-muted small mb-0"> 2025 Sebastián Gomez</p>
+        </div>
+    </header>
+</div>
+```
+
+### CSS Styling
+
+```css
+.hero-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 340px;
+  height: 100vh;
+  background: rgba(13, 17, 23, 0.94);
+  backdrop-filter: blur(10px);
+  border-left: 1px solid rgba(74, 144, 226, 0.14);
+  z-index: 900;
+  overflow-y: auto;
+  color: #e1e8ed;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-sidebar .hero-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--accent-color);
+  box-shadow: 0 0 30px rgba(74, 144, 226, 0.28);
+  margin-bottom: 1.8rem;
+  transition: transform 0.4s ease;
+}
+
+.hero-sidebar .hero-img:hover {
+  transform: scale(1.06);
+}
+```
+
+## Mobile Offcanvas Menu
+
+On mobile devices (< 1200px), the sidebar is hidden and replaced with an offcanvas menu triggered by a hamburger button.
+
+### Offcanvas Button
+
+```html
+<div class="offcanvas-btn text-end m-3">
+    <button class="btn" type="button" data-bs-toggle="offcanvas" 
+            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" 
+            aria-label="Abrir menú">
+        <i class="ti ti-menu-2"></i>
+    </button>
+</div>
+```
+
+### Offcanvas Structure
+
+```html
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" 
+     aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <button type="button" class="btn-close btn-close-white" 
+                data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body">
+        <header class="hero position-fixed">
+            <div class="container hero-container text-center align-content-between">
+                <div>
+                    <img src="images/sin.png" class="hero-img mb-4 rounded-circle" 
+                         alt="Sebastián Gómez" width="140" height="140" loading="lazy">
+
+                    <h2 class="fw-bold">Sebastián Gómez</h2>
+                    <p>Desarrollador Web App | Apasionado por la tecnología</p>
+
+                    <div class="social-icon my-4">
+                        <!-- Social links (same structure as desktop) -->
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+</div>
+```
+
+### Mobile CSS
+
+```css
+/* Hamburger button (mobile only) */
+.offcanvas-btn {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 1001;
+  display: none;
+}
+
+.offcanvas-btn i {
+    font-size: 30px;
+    color: var(--body-text-color);
+    transition: color 0.3s ease;
+}
+
+.offcanvas-btn:hover i {
+    color: var(--accent-color);
+}
+
+/* Responsive behavior */
+@media (max-width: 1199px) {
+  .hero-sidebar {
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 320px;
+  }
+
+  .offcanvas-btn {
+    display: block;
+  }
+}
+```
+
+## Social Media Icons
+
+Social icons are styled as circular buttons with hover effects.
+
+### Social Icon Styling
+
+```css
+.social-icon {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 1.8rem 0 3rem;
+  position: relative;
+  z-index: 999;
+}
+
+.social-link {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  color: white;
+  font-size: 1.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.09);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1000;
+}
+
+.social-link:hover {
+  background: var(--accent-color);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(74, 144, 226, 0.35);
+}
+```
+
+## Layout Configuration
+
+<ParamField path=".hero-sidebar" type="component">
+  Fixed sidebar container visible on desktop (1200px+)
+</ParamField>
+
+<ParamField path=".hero-sidebar width" type="dimension" default="340px">
+  Width of the sidebar on desktop
+</ParamField>
+
+<ParamField path=".offcanvas-btn" type="component">
+  Hamburger menu button visible on mobile (< 1200px)
+</ParamField>
+
+<ParamField path=".hero-img" type="element">
+  Profile image with circular border and hover scale effect
+</ParamField>
+
+<ParamField path=".social-icon" type="container">
+  Flexbox container for social media links
+</ParamField>
+
+## Main Content Offset
+
+The main content area is offset to accommodate the fixed sidebar on desktop.
+
+```css
+.main-content {
+  margin-right: 340px;
+  min-height: 100vh;
+}
+
+@media (max-width: 1199px) {
+  .main-content {
+    margin-right: 0;
+  }
+}
+```
+
+## Key Features
+
+- **Fixed positioning** on desktop for persistent visibility
+- **Offcanvas menu** on mobile using Bootstrap 5 components
+- **Backdrop blur** effect for modern glass-morphism look
+- **Smooth transitions** for hover and open/close animations
+- **Responsive design** with breakpoint at 1200px
+- **Accessible** with proper ARIA labels and semantic HTML
