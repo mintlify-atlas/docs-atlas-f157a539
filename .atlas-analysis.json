@@ -1,0 +1,66 @@
+{
+  "projectType": "frontend",
+  "projectName": "Portfolio Template",
+  "projectDescription": "A modern, responsive personal portfolio website showcasing developer skills, projects, and experience",
+  "theme": "palm",
+  "primaryColor": "#4A90E2",
+  "lightColor": "#6aa8f5",
+  "darkColor": "#2C3E50",
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting Started",
+        "pages": [
+          "introduction",
+          "quickstart",
+          "installation"
+        ]
+      },
+      {
+        "group": "Customization",
+        "pages": [
+          "customization/content",
+          "customization/styling",
+          "customization/portfolio-projects",
+          "customization/contact-form"
+        ]
+      },
+      {
+        "group": "Components",
+        "pages": [
+          "components/hero-section",
+          "components/about-section",
+          "components/resume-section",
+          "components/portfolio-section",
+          "components/contact-section"
+        ]
+      },
+      {
+        "group": "Deployment",
+        "pages": [
+          "deployment/overview",
+          "deployment/github-pages",
+          "deployment/netlify",
+          "deployment/vercel"
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Responsive single-page design with smooth scrolling navigation",
+    "Fixed sidebar profile card with social media links",
+    "Portfolio grid showcasing projects with images and categories",
+    "Resume section with skills, work experience, and education timeline",
+    "Integrated WhatsApp contact form",
+    "Dark theme with customizable color scheme",
+    "AOS animations and Bootstrap 5 styling"
+  ],
+  "publicApiSurface": [
+    "Hero/Profile Section - sidebar with profile image and social links",
+    "About Section - personal info and services offered",
+    "Resume Section - technical skills, work experience, education timeline",
+    "Portfolio Section - project showcase grid with hover effects",
+    "Contact Section - form redirecting to WhatsApp plus contact details",
+    "Navigation - fixed vertical icon navigation with scroll spy"
+  ]
+}
